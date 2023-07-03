@@ -2,7 +2,7 @@
   "name": "spotify-clone",
   "version": "0.0.149",
   "dependencies": {
-    "next": "12.2.3",
+    "next": "latest",
     "react": "^18",
     "react-dom": "^18",
     "react-is": "^18"
