@@ -1,20 +1,27 @@
 {
   "name": "spotify-clone",
-  "version": "0.0.149",
+  "version": "0.1.95",
   "dependencies": {
-    "next": "latest",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-is": "^18"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "web-vitals": "^3.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
   },
   "devDependencies": {
-    "@types/react": "^18",
-    "autoprefixer": "^10.4.14",
-    "bun-framework-next": "^12.2",
-    "postcss": "^8.4.24",
-    "react-refresh": "0.10.0",
-    "tailwindcss": "^3.3.2",
-    "typescript": "latest"
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@types/web": "^0.0.99",
+    "bun-types": "canary",
+    "typescript": "latest",
+    "react-refresh": "0.10.0"
   },
-  "module": "index.js"
+  "scripts": {
+    "dev": "bun --watch run dev.tsx"
+  },
+  "module": "index.ts",
+  "type": "module"
 }

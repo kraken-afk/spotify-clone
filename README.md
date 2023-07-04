@@ -1,36 +1,25 @@
-# Next.js with Bun runtime
+# React Bun App
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with Bun.
-
-## Getting Started
-
-### Cloning the repo
+This is a single-page application project template using React and [Bun](https://bun.sh/). Run the following commands to get started.
 
 ```sh
-bun create next ./app
+bun create react ./react-bun-app
+cd react-bun-app
 ```
 
-First, run the development server:
+The `bun create` command will automatically install the required dependencies. To start the dev server:
 
-```bash
-bun dev
+```sh
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+This bundles `src/index.tsx` and starts a development server that serves from the `public` and `build` directories. When the incoming request to `localhost:3000/` comes in, the following exchange occurs:
 
-## Learn More
+- The Bun server returns `public/index.html`.
+- The browser renders this HTML, which contains a `script` tags with `src="/index.js"`. The browser requests this file.
+- The server checks for this file, first in `public` (no match) then in `build`. It finds `build/index.js` and returns it to the browser.
+- This file renders the React component in `src/App.tsx` inside the `div#root` element. The app is now ready to accept user input.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Start building your app by editing `src/App.tsx`.
