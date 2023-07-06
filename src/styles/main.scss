@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  @apply font-sans bg-[#000] text-white;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: minmax(90px, .5fr) 1.5fr;
+
+  height: 99vh;
+}
