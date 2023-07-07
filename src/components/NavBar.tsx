@@ -5,10 +5,10 @@ import logo from "~/images/logo-mobile.svg";
 
 export default function NavBar(): ReactElement {
   return (
-    <nav className="p-[.6rem]">
-      <picture className="block mb-4 p-[.7rem]">
+    <nav className="p-[.4rem] pr-0" >
+      <picture className="block mb-2 py-[.7rem] px-[.3rem]">
         <source media="(min-width: 640px)" srcSet={logoFull} />
-        <img src={logo} alt="Spotify logo" />
+        <img src={logo} alt="Spotify logo" draggable="false" />
       </picture>
       <div className=" bg-base rounded-[7px] p-[.7rem]">
         <div>
@@ -24,7 +24,7 @@ export default function NavBar(): ReactElement {
           </Link>
 
           <Link href="/search">
-            <div aria-aria-label="Search" className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all">
+            <div aria-label="Search" className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all">
               <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon" className="mr-5">
                 <path d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 1 0 1.414-1.414l-4.344-4.344a9.157 9.157 0 0 0 2.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z">
                 </path>

@@ -10,7 +10,9 @@
 
 .app {
   display: grid;
-  grid-template-columns: minmax(90px, .5fr) 1.5fr;
+  grid-template-columns: 20% .4rem 1fr;
 
-  height: 99vh;
+  height: 100vh;
 }
+
+@import url('./split-pane.scss');

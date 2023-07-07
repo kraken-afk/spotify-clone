@@ -3,14 +3,18 @@ import { Route } from "wouter";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import NavBar from "./components/NavBar";
+import Split from "./components/Split";
 import "./styles/main.scss";
 
 export default function App(): ReactElement {
+  console.log("App");
   return (
     <>
       <div className="app">
-        <NavBar />
-        <AppRoute />
+        <Split>
+          <NavBar />
+          <AppRoute />
+        </Split>
       </div>
     </>
   );
@@ -18,7 +22,7 @@ export default function App(): ReactElement {
 
 function AppRoute(): ReactElement {
   return (
-    <div className="p-4 rounded-[7px] bg-base m-[.6rem] ml-0">
+    <div className="p-4 rounded-[7px] bg-base transition-all">
       <Route path="/">
         <Home />
       </Route>
