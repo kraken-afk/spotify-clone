@@ -1,14 +1,12 @@
-import { ReactElement, useRef, useEffect, useCallback, type LegacyRef,  type PropsWithChildren, type ReactNode } from "react";
+import { ReactElement, useRef, useEffect, useCallback, type LegacyRef, type ReactNode } from "react";
 
-export default function Split({ children }: PropsWithChildren): ReactElement {
+export default function Split({ children, refs }: SplitComponentProps): ReactElement {
   const gutterRef = useRef<HTMLDivElement>();
-
-  console.log("Split");
 
   const mouseHandler = useCallback(() => {
     const element = gutterRef.current;
-    const leftSide = element?.previousElementSibling as HTMLElement;
-    const rightSide = element?.nextElementSibling as HTMLElement;
+    const leftSide = refs.prevRef.current;
+    const rightSide = refs.nextRef.current;
 
     let x = 0;
     let y = 0;
@@ -28,7 +26,7 @@ export default function Split({ children }: PropsWithChildren): ReactElement {
     function mouseMoveHandler({ clientX }: MouseEvent) {
       const dx = clientX - x;
       const newLeftWidth = ((leftWidth + dx) * 100) / (element?.parentElement?.getBoundingClientRect().width as number);
-      // @ts-ignore
+
       leftSide.parentElement.style.gridTemplateColumns = `${newLeftWidth}% .4rem 1fr`;
 
       leftSide.style.userSelect = 'none';

@@ -1,16 +1,16 @@
-import { ReactElement } from "react";
+import { ReactElement, forwardRef, type MutableRefObject } from "react";
 import { Link } from "wouter";
 import logoFull from "~/images/logo-full.svg";
 import logo from "~/images/logo-mobile.svg";
 
-export default function NavBar(): ReactElement {
+const NavBar = forwardRef((_props, ref): ReactElement => {
   return (
-    <nav className="p-[.4rem] pr-0" >
+    <nav className="p-2 px-0"  ref={ref as MutableRefObject<HTMLDivElement>}>
       <picture className="block mb-2 py-[.7rem] px-[.3rem]">
         <source media="(min-width: 640px)" srcSet={logoFull} />
         <img src={logo} alt="Spotify logo" draggable="false" />
       </picture>
-      <div className=" bg-base rounded-[7px] p-[.7rem]">
+      <div className=" bg-base rounded-[8.5px] p-[.7rem] py-[.3rem]">
         <div>
 
           <Link href="/">
@@ -37,4 +37,6 @@ export default function NavBar(): ReactElement {
       </div>
     </nav>
   );
-}
+})
+
+export default NavBar;

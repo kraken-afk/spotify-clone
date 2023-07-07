@@ -9,8 +9,9 @@
 }
 
 .app {
+  padding: 10px;
   display: grid;
-  grid-template-columns: 20% .4rem 1fr;
+  grid-template-columns: 21% .6rem 1fr;
 
   height: 100vh;
 }

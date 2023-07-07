@@ -1,3 +1,7 @@
 div[data-type="gutter"] {
   cursor: col-resize;
+
+  &:hover {
+    border-left: 1px solid rgba(128, 128, 128, 0.575);
+  }
 }
