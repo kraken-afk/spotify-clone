@@ -25,7 +25,10 @@ export default function App(): ReactElement {
 
 const AppRoute = forwardRef((_props, ref): ReactElement => {
   return (
-    <main className="p-4 rounded-[7px] bg-base transition-all" ref={ref as MutableRefObject<HTMLDivElement>}>
+    <main
+      className="p-4 rounded-[7px] bg-base transition-all"
+      ref={ref as MutableRefObject<HTMLDivElement>}
+    >
       <Route path="/">
         <Home />
       </Route>
@@ -34,4 +37,4 @@ const AppRoute = forwardRef((_props, ref): ReactElement => {
       </Route>
     </main>
   );
-})
+});

@@ -1,6 +1,16 @@
-import { ReactElement, useRef, useEffect, useCallback, type LegacyRef, type ReactNode } from "react";
+import {
+  ReactElement,
+  useRef,
+  useEffect,
+  useCallback,
+  type LegacyRef,
+  type ReactNode,
+} from "react";
 
-export default function Split({ children, refs }: SplitComponentProps): ReactElement {
+export default function Split({
+  children,
+  refs,
+}: SplitComponentProps): ReactElement {
   const gutterRef = useRef<HTMLDivElement>();
 
   const mouseHandler = useCallback(() => {
@@ -10,7 +20,7 @@ export default function Split({ children, refs }: SplitComponentProps): ReactEle
 
     let x = 0;
     let y = 0;
-    let leftWidth = 0
+    let leftWidth = 0;
 
     element?.addEventListener("mousedown", mouseDownHandler);
 
@@ -25,32 +35,34 @@ export default function Split({ children, refs }: SplitComponentProps): ReactEle
 
     function mouseMoveHandler({ clientX }: MouseEvent) {
       const dx = clientX - x;
-      const newLeftWidth = ((leftWidth + dx) * 100) / (element?.parentElement?.getBoundingClientRect().width as number);
+      const newLeftWidth =
+        ((leftWidth + dx) * 100) /
+        (element?.parentElement?.getBoundingClientRect().width as number);
 
       leftSide.parentElement.style.gridTemplateColumns = `${newLeftWidth}% .4rem 1fr`;
 
-      leftSide.style.userSelect = 'none';
-      leftSide.style.pointerEvents = 'none';
+      leftSide.style.userSelect = "none";
+      leftSide.style.pointerEvents = "none";
 
-      rightSide.style.userSelect = 'none';
-      rightSide.style.pointerEvents = 'none';
-      document.body.style.cursor = 'col-resize'
+      rightSide.style.userSelect = "none";
+      rightSide.style.pointerEvents = "none";
+      document.body.style.cursor = "col-resize";
     }
 
     function mouseUpHandler() {
       console.log("mouseup");
-      document.body.style.removeProperty('cursor');
-      document.body.style.removeProperty('cursor');
+      document.body.style.removeProperty("cursor");
+      document.body.style.removeProperty("cursor");
 
-      leftSide.style.removeProperty('user-select');
-      leftSide.style.removeProperty('pointer-events');
+      leftSide.style.removeProperty("user-select");
+      leftSide.style.removeProperty("pointer-events");
 
-      rightSide.style.removeProperty('user-select');
-      rightSide.style.removeProperty('pointer-events');
+      rightSide.style.removeProperty("user-select");
+      rightSide.style.removeProperty("pointer-events");
 
-      document.removeEventListener('mousemove', mouseMoveHandler);
-      document.removeEventListener('mouseup', mouseUpHandler);
-    };
+      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
+    }
   }, []);
 
   useEffect(mouseHandler, []);
@@ -58,7 +70,10 @@ export default function Split({ children, refs }: SplitComponentProps): ReactEle
   return (
     <>
       {(children as ReactNode[])[0]}
-      <div ref={gutterRef as LegacyRef<HTMLDivElement>} data-type="gutter"></div>
+      <div
+        ref={gutterRef as LegacyRef<HTMLDivElement>}
+        data-type="gutter"
+      ></div>
       {(children as ReactNode[])[1]}
     </>
   );
