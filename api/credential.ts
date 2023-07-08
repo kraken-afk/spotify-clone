@@ -15,8 +15,6 @@ export default serve(async (req: Request) => {
     data: credential,
   };
 
-  console.log("success");
-
   return new Response(JSON.stringify(body), {
     headers: {
       "Content-Type": "application/json",
