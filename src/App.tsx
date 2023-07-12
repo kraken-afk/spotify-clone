@@ -5,21 +5,28 @@ import Search from "./pages/search";
 import NavBar from "./components/NavBar";
 import Split from "./components/Split";
 import "./styles/main.scss";
+import getCredential from "./utils/getCredential";
+import Loader from "./components/Loader";
 
 export default function App(): ReactElement {
   const navBarRef = useRef<HTMLElement>();
   const mainRef = useRef<HTMLElement>();
   const refs = { prevRef: navBarRef, nextRef: mainRef };
+  const { data, isLoading } = getCredential();
+
+  console.log(data);
 
   return (
-    <>
-      <div className="app">
+    <div className="app">
+      {isLoading ? (
+        <Loader />
+      ) : (
         <Split refs={refs}>
           <NavBar ref={navBarRef} />
           <AppRoute ref={mainRef} />
         </Split>
-      </div>
-    </>
+      )}
+    </div>
   );
 }
 

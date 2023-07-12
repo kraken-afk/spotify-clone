@@ -1,5 +1,5 @@
 export function devMode() {
-  if (import.meta.env.MODE !== "development") return;
+  if (import.meta.env.VITE_MODE === "development") return;
   const element = document.body;
 
   alert("The apps is under developmenet");

@@ -50,7 +50,6 @@ export default function Split({
     }
 
     function mouseUpHandler() {
-      console.log("mouseup");
       document.body.style.removeProperty("cursor");
       document.body.style.removeProperty("cursor");
 
