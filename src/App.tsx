@@ -14,17 +14,21 @@ export default function App(): ReactElement {
   const refs = { prevRef: navBarRef, nextRef: mainRef };
   const { data, isLoading } = getCredential();
 
-  console.log(data);
-
   return (
     <div className="app">
-      {isLoading ? (
+      {import.meta.env.VITE_MODE !== "development" ? (
         <Loader />
       ) : (
-        <Split refs={refs}>
-          <NavBar ref={navBarRef} />
-          <AppRoute ref={mainRef} />
-        </Split>
+        <>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <Split refs={refs}>
+              <NavBar ref={navBarRef} />
+              <AppRoute ref={mainRef} />
+            </Split>
+          )}
+        </>
       )}
     </div>
   );
