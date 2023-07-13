@@ -34,8 +34,10 @@ export default function Split({
     }
 
     function mouseMoveHandler({ clientX }: MouseEvent) {
+      clientX = clientX < 65 ? 65 : clientX;
+      clientX = clientX > 315 ? 315 : clientX;
       const dx = clientX - x;
-      const newLeftWidth =
+      let newLeftWidth =
         ((leftWidth + dx) * 100) /
         (element?.parentElement?.getBoundingClientRect().width as number);
 

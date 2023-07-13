@@ -14,6 +14,16 @@
   grid-template-columns: 21% .6rem 1fr;
 
   height: 100vh;
+
+  @media screen and (max-width: 640px) {
+    & {
+      grid-template-columns: 50px .6rem 1fr;
+    }
+
+    div[data-type="gutter"] {
+      pointer-events: none
+    }
+  }
 }
 
 @import url('./split-pane.scss');
