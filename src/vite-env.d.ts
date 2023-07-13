@@ -14,9 +14,5 @@ interface Credential {
   access_token: string;
   expires_in: number;
   token_type: string;
-}
-
-interface CacheState<T> {
-  fromCache: boolean;
-  data: T | null;
+  refresh_token: string;
 }

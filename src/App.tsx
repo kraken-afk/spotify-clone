@@ -1,32 +1,32 @@
-import { ReactElement, forwardRef, useRef, type MutableRefObject } from "react";
+import { type MutableRefObject, ReactElement, forwardRef, useRef } from "react";
 import { Route } from "wouter";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import NavBar from "./components/NavBar";
 import Split from "./components/Split";
-import "./styles/main.scss";
-// import getCredential from "./utils/getCredential";
+import useAuthorization from "./hooks/useAuthorization";
 import Loader from "./components/Loader";
+import "./styles/main.scss";
 
 export default function App(): ReactElement {
   const navBarRef = useRef<HTMLElement>();
   const mainRef = useRef<HTMLElement>();
   const refs = { prevRef: navBarRef, nextRef: mainRef };
-  // const { data, isLoading } = getCredential();
-
-  // console.log(data);
+  const { data: token, isLoading } = useAuthorization();
 
   return (
-    <div className="app">
-      {false ? (
+    <>
+      {!token?.access_token || isLoading ? (
         <Loader />
       ) : (
-        <Split refs={refs}>
-          <NavBar ref={navBarRef} />
-          <AppRoute ref={mainRef} />
-        </Split>
+        <div className="app">
+          <Split refs={refs}>
+            <NavBar ref={navBarRef} />
+            <AppRoute ref={mainRef} />
+          </Split>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
