@@ -7,6 +7,7 @@ import useAuthorization from "./hooks/useAuthorization";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import "./styles/main.scss";
+import ErrorModal from "./components/ErrorModal";
 
 export default function App(): ReactElement {
   const navBarRef = useRef<HTMLElement>();
@@ -14,7 +15,8 @@ export default function App(): ReactElement {
   const refs = { prevRef: navBarRef, nextRef: mainRef };
   const { data: token, isLoading, error } = useAuthorization();
 
-  console.warn(error);
+  if (error)
+    return <ErrorModal />;
 
   if (!token || isLoading)
     return <Loader title="loading" />;

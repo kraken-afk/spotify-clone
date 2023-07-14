@@ -41,7 +41,7 @@ export default function Loader({ title }: LoaderProps): ReactElement {
         {title ? (
           <span
             ref={titleRef}
-            className="block text-2xl bold text-white translate-y-[4.5rem] uppercase"
+            className="block text-2xl bold text-white translate-y-[4.5rem] capitalize"
           ></span>
         ) : (
           ""
