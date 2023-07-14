@@ -3,6 +3,8 @@ import base64urlencode from "~/libs/base64urlencode";
 import generateRandomString from "~/libs/generateRandomString";
 import sha256 from "~/libs/sha256";
 
+// TODO: store token in the backend
+
 export default function useAuthorization() {
   return useQuery({
     queryKey: ["authorization"],
@@ -46,8 +48,7 @@ export default function useAuthorization() {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get("code") as string;
         const verifier = localStorage.getItem("X-Verifier") as string;
-
-        const body: Record<string, string> = {
+        let body: Record<string, string> = {
           grant_type: "authorization_code",
           code: code,
           redirect_uri: window.location.origin + "/",
@@ -72,8 +73,31 @@ export default function useAuthorization() {
         if ("error" in token) return;
 
         localStorage.setItem("isLogged", "true");
+        localStorage.setItem("refresh_token", token.refresh_token);
 
         return token as Credential;
+      } else {
+        const body = {
+          grant_type: "refresh_token",
+          refresh_token: localStorage.getItem("refresh_token") as string,
+          client_id: client_id,
+          client_secret: client_secret,
+        };
+
+        const tokenResponse = await fetch(
+          "https://accounts.spotify.com/api/token",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams(body),
+          }
+        );
+
+        const token = (await tokenResponse.json()) as Credential;
+
+        return token;
       }
     },
   });

@@ -20,8 +20,7 @@ export default function App(): ReactElement {
     return <ErrorModal />;
 
   if (!token || isLoading)
-    return <Loader title="loading" />;
-
+    return <Loader title="loading..." />;
 
   return (
   <CredentialContext.Provider value={token}>
