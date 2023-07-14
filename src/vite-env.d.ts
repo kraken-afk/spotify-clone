@@ -5,6 +5,11 @@ declare module "*.svg" {
   export default content;
 }
 
+declare module "typed.js" {
+  const content: any;
+  export default content;
+}
+
 interface SplitComponentProps {
   children: ReactNode[];
   refs: { prevRef: MutableRefObject<HTMLElement>, nextRef: MutableRefObject<HTMLElement> }

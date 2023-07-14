@@ -9,7 +9,7 @@ const root = createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
   import.meta.env.VITE_MODE !== "development" ? (
-    <Loader />
+    <Loader title="under construction" />
   ) : (
     <StrictMode>
       <QueryClientProvider client={queryClient}>

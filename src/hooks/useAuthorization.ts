@@ -1,7 +1,7 @@
-import sha256 from "~/libs/sha256";
+import { useQuery } from "@tanstack/react-query";
 import base64urlencode from "~/libs/base64urlencode";
 import generateRandomString from "~/libs/generateRandomString";
-import { useQuery } from "@tanstack/react-query";
+import sha256 from "~/libs/sha256";
 
 export default function useAuthorization() {
   return useQuery({
