@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+/// <reference path="./spotify.d.ts" />
+
 
 declare module "*.svg" {
   const content: string;

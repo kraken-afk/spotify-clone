@@ -1,0 +1,8 @@
+.card {
+  &:hover {
+    .play-btn {
+      bottom: calc(6rem - 8px);
+      opacity: 1;
+    }
+  }
+}

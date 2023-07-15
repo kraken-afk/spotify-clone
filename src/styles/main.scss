@@ -9,15 +9,26 @@
 }
 
 .app {
+  $nav-width: 21%;
+  $gutter-width: .6rem;
+
   padding: 10px;
   display: grid;
-  grid-template-columns: 21% .6rem 1fr;
-
+  grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
   height: 100vh;
+
+  .main {
+    background: rgb(18, 18, 18);
+    background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
+    background: linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
+  }
 
   @media screen and (max-width: 640px) {
     & {
-      grid-template-columns: 50px .6rem 1fr;
+      $nav-width: 50px;
+      grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
     }
 
     div[data-type="gutter"] {
