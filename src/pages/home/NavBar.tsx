@@ -16,7 +16,7 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
       <div className="flex">
         <button
           type="button"
-          className="p-1 bg-black rounded-full block w-min disabled:opacity-50 disabled:cursor-not-allowed first:mr-2"
+          className="w-[32px] h-[32px] bg-black rounded-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed first:mr-2"
           disabled
         >
           <svg
@@ -31,7 +31,7 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
         </button>
         <button
           type="button"
-          className="p-1 bg-black rounded-full block w-min disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-[32px] h-[32px] bg-black rounded-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
           disabled
         >
           <svg
@@ -67,7 +67,7 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
           <span aria-hidden>Install the apps</span>
         </motion.button>
         <motion.picture whileHover={whileHoverValue} className="overflow-hidden rounded-full border-[5px] border-black border-solid cursor-pointer">
-          <img src={profile} alt="24img" />
+          <img src={profile} alt="Profile image" width={32} height={32} />
         </motion.picture>
       </div>
     </div>

@@ -15,13 +15,11 @@ interface CurrentProfile {
   };
   href: string;
   id: string;
-  images: [
-    {
+  images: Array<{
       url: string;
       height: number;
       width: number;
-    }
-  ];
+    }>;
   product: string;
   type: string;
   uri: string;
