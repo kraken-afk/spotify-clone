@@ -7,7 +7,7 @@ import CredentialContext from "~/context/CredentialContext";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "~/styles/utils.scss";
-import SkeletonCard from "~/components/SkeletonCard";
+import SkeletonCard from "~/components/skeletons/SkeletonCard";
 
 export default function YourPlaylists(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
