@@ -1,4 +1,10 @@
-import { useLayoutEffect, useRef, useState, type ReactElement, useContext } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactElement,
+  useContext
+} from "react";
 import { Scrollbar, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Card from "~/components/Card";
@@ -14,9 +20,11 @@ export default function YourPlaylists(): ReactElement {
   const cardRef = useRef<HTMLDivElement>(null);
   const [slidesCount, setSlidesCount] = useState<number>(0);
   const token = useContext(CredentialContext) as Credential;
-  const { data, isLoading } = useFetchSpotify("https://api.spotify.com/v1/me/playlists?limit=10", token, { method: "GET" });
-
-  console.log(data)
+  const { data, isLoading } = useFetchSpotify<CurrentProfilePlaylist>(
+    "https://api.spotify.com/v1/me/playlists?limit=10",
+    token,
+    { method: "GET" }
+  );
 
   useLayoutEffect(() => {
     if (slidesCount || isLoading) return;
@@ -28,7 +36,7 @@ export default function YourPlaylists(): ReactElement {
     while (count + cardX <= containerX) count += cardX;
 
     setSlidesCount(count / cardX);
-  }, []);
+  }, [isLoading]);
 
   return (
     <section ref={containerRef} className="my-4 overflow-hidden">
@@ -45,14 +53,22 @@ export default function YourPlaylists(): ReactElement {
           scrollbar={{ draggable: true }}
           modules={[Scrollbar, Virtual]}
         >
-          <SwiperSlide>
-            <Card
-              ref={cardRef}
-              coverImage="https://picsum.photos/300"
-              title="Indie Gaming"
-              description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero quisquam veritatis provident aperiam cupiditate officiis. Vitae error iure repellat officiis debitis, facilis cumque enim consequatur! Accusamus expedita repellendus tenetur dolorem."
-            />
-          </SwiperSlide>
+          {data?.items.map((item, index) => {
+            return (
+              <SwiperSlide key={item.id}>
+                <Card
+                  ref={index === 0 ? cardRef : null}
+                  coverImage={item.images[0].url}
+                  title={item.name}
+                  description={
+                    item.description.length
+                      ? item.description
+                      : `by ${item.owner.display_name}`
+                  }
+                />
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       )}
     </section>

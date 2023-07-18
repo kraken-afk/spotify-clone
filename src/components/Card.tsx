@@ -18,9 +18,10 @@ const Card = forwardRef((props: CardContent, ref: LegacyRef<HTMLDivElement>): Re
         <img src={props.coverImage} alt="image" />
       </picture>
       <h3 className="truncate font-bold mt-2">{props.title}</h3>
-      <p className="text-sm font-bold text-[.8rem] text-essential-sub truncate">
-        {props.description}
-      </p>
+      <p
+        className="text-sm font-bold text-[.8rem] text-essential-sub truncate"
+        dangerouslySetInnerHTML={{ __html: props.description as string }}
+      ></p>
       <div className="absolute shadow-lg right-6 bottom-20 h-12 w-12 bg-green opacity-0 rounded-full flex justify-center items-center play-btn transition-all duration-300">
         <svg
           className="block translate-x-[2px]"
