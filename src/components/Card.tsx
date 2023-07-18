@@ -1,4 +1,4 @@
-import { forwardRef, type LegacyRef, type ReactElement } from "react";
+import { forwardRef, type ReactElement } from "react";
 import "~/styles/card.scss";
 
 interface CardContent {
@@ -8,7 +8,7 @@ interface CardContent {
   className?: string;
 }
 
-const Card = forwardRef((props: CardContent, ref: LegacyRef<HTMLDivElement>): ReactElement => {
+const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement => {
   return (
     <div
       ref={ref}
