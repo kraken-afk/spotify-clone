@@ -1,7 +1,7 @@
 import { type ReactElement, forwardRef, useRef, type MutableRefObject } from "react";
 import { Route } from "wouter";
 import Loader from "./components/Loader";
-import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 import Split from "./components/Split";
 import useAuthorization from "./hooks/useAuthorization";
 import Home from "./pages/home";
@@ -26,7 +26,7 @@ export default function App(): ReactElement {
   <CredentialContext.Provider value={token}>
       <div className="app">
         <Split refs={refs}>
-          <NavBar ref={navBarRef} />
+          <SideBar ref={navBarRef} />
           <AppRoute ref={mainRef} />
         </Split>
       </div>
