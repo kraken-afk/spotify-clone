@@ -3,6 +3,7 @@ import CredentialContext from "~/context/CredentialContext";
 import useFetchSpotify from "~/hooks/useFetchSpotify";
 import ResponsiveSwiper from "~/components/ResponseiveSwiper";
 import Card from "~/components/Card";
+import Section from "./Section";
 
 export default function FeaturedPlaylist(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,7 +15,7 @@ export default function FeaturedPlaylist(): ReactElement {
   );
 
   return (
-    <section ref={containerRef} className="my-4 overflow-hidden mb-5">
+    <Section ref={containerRef}>
       <h2 className="sub-title mb-4">Your featured playlist</h2>
       <ResponsiveSwiper isLoading={isLoading} containerRef={containerRef}>
         {data?.playlists.items.map((item) => (
@@ -26,6 +27,6 @@ export default function FeaturedPlaylist(): ReactElement {
           />
         ))}
       </ResponsiveSwiper>
-    </section>
+    </Section>
   );
 }
