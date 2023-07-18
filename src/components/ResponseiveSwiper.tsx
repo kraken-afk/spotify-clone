@@ -28,8 +28,6 @@ export default function ResponsiveSwiper({
     const cardX = 192;
     let count = 0;
 
-    console.log(cardX)
-
     while (count + cardX <= containerX) count += cardX;
 
     setSlidesCount(count / cardX);

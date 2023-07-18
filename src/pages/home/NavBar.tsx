@@ -1,18 +1,35 @@
 import { type TargetAndTransition, type VariantLabels, motion } from "framer-motion";
-import { type ReactElement } from "react";
+import { useRef, type ReactElement, useEffect } from "react";
 
 interface HomeNavBarProps {
   profile: string;
 }
 
 export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
+  const navRef = useRef<HTMLDivElement>(null);
   const whileHoverValue: VariantLabels | TargetAndTransition = {
     scale: 1.05,
     opacity: .8,
   };
 
+  useEffect(() => {
+    const options: IntersectionObserverInit = {
+      root: document.querySelector(".main"),
+      rootMargin: "0px",
+      threshold: 1.0,
+    };
+    const observer = new IntersectionObserver(([entries]) => {
+      if (entries.intersectionRatio < 1)
+        navRef.current?.classList.replace("bg-transparent", "bg-black")
+      else
+        navRef.current?.classList.replace("bg-black", "bg-transparent");
+    }, options)
+
+    observer.observe(navRef.current as Element);
+  }, [navRef]);
+
   return (
-    <div className="flex justify-between">
+    <div className="bg-opacity-40 transition-all duration-300 flex justify-between items-center sticky top-[-1px] left-0 z-10 backdrop-blur bg-transparent p-4" ref={navRef}>
       <div className="flex">
         <button
           type="button"

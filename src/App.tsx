@@ -37,7 +37,7 @@ export default function App(): ReactElement {
 const AppRoute = forwardRef((_props, ref): ReactElement => {
   return (
     <main
-      className="p-4 rounded-[7px] transition-all bg-base w-full"
+      className="rounded-[7px] transition-all bg-base w-full main"
       ref={ref as MutableRefObject<HTMLDivElement>}
     >
       <Route path="/">
