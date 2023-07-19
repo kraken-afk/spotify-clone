@@ -28,12 +28,15 @@ export default function useAuthorization() {
         const state = generateRandomString(16);
         const encryptedVerifier = await sha256(verifier);
         const endpoint = new URL("https://accounts.spotify.com/authorize");
+        const scope =
+          "user-read-private user-read-email playlist-read-private playlist-read-collaborative user-library-read user-top-read";
 
         localStorage.setItem("X-Verifier", verifier);
 
         endpoint.search = new URLSearchParams({
           client_id,
           state,
+          scope,
           response_type: "code",
           redirect_uri: window.location.href,
           code_challange_method: "S256",

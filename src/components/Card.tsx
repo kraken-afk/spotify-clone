@@ -14,8 +14,13 @@ const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement 
       ref={ref}
       className={`w-48 h-64 p-4 rounded-md bg-black-expose shadow-md hover:bg-neutral-800 transition-all duration-300 cursor-pointer relative card ${props.className}`}
     >
-      <picture className="block h-[158px] w-full object-center rounded-sm overflow-hidden shadow-sm">
-        <img src={props.coverImage} alt="image" />
+      <picture className="block h-[158px] w-full object-center rounded-sm overflow-hidden shadow-sm bg-neutral-700 animate-pulse">
+        <img src={props.coverImage} alt="image" loading="lazy" onLoad={({ target }) => {
+          (target as HTMLElement).parentElement?.classList.remove(
+            "bg-neutral-700",
+            "animate-pulse"
+          );
+        }}  />
       </picture>
       <h3 className="truncate font-bold mt-2">{props.title}</h3>
       <p
