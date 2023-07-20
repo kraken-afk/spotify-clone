@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import YourPlaylists from "./components/YourPlaylists";
 import ShowSection from "./components/ShowsSection";
 import LocalLoader from "~/components/LocalLoader";
+import EpisodesSection from "./components/EpisodesSection";
 import "~/styles/utils.scss";
 
 export default function Home(): ReactElement {
@@ -50,14 +51,17 @@ export default function Home(): ReactElement {
           {greetTime()}, {display_name}.
         </h2>
 
-        {/* Your playlist section */}
+        {/* playlist section */}
         <YourPlaylists />
 
-        {/* Your featured playlist section */}
+        {/* featured playlist section */}
         <FeaturedPlaylist />
 
         {/* Shows section */}
         <ShowSection />
+
+        {/* Episodes section */}
+        <EpisodesSection />
       </div>
     </>
   );

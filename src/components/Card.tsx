@@ -30,7 +30,7 @@ const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement 
       </picture>
       <h3 className="truncate font-bold mt-2">{props.title}</h3>
       <p
-        className="text-sm font-bold text-[.8rem] text-essential-sub truncate"
+        className="text-sm font-bold text-[.8em] text-essential-sub truncate"
         dangerouslySetInnerHTML={{ __html: props.description as string }}
       ></p>
       {props?.type !== "show" && (

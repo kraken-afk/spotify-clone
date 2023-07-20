@@ -8,6 +8,15 @@ interface ExternalUrls {
   spotify: string;
 }
 
+interface ContentResponse<T = unknown> {
+  href: string;
+  items: T[];
+  limit: number;
+  offset: number;
+  previous?: string;
+  total: number;
+}
+
 interface CurrentProfile {
   country: string;
   display_name: string;
@@ -56,50 +65,15 @@ interface PlaylistItem {
   uri: string;
 }
 
-interface Playlists {
-  href: string;
-  items: Array<PlaylistItem>;
-  limit: number;
-  next?: string;
-  offset: number;
-  previous?: string;
-  total: number;
-}
+type Playlists = ContentResponse<PlaylistItem>;
 
-interface EpisodeItem {
-  audio_preview_url: string;
-  description: string;
-  duration_ms: number;
-  explicit: false;
-  external_urls: ExternalUrls;
-  href: string;
-  html_description: string;
-  id: string;
-  images: Array<CoverImg>;
-  is_externally_hosted: boolean;
-  is_playable: true;
-  language: string;
-  languages: string[];
-  name: string;
-  release_date: string;
-  release_date_precision: string;
-  type: string;
-  uri: string;
-}
+type Shows = ContentResponse<ShowsItem>;
+
+type Episodes = ContentResponse<EpisodesItem>;
 
 interface FeaturedPlaylist {
   message: string;
   playlists: Playlists;
-}
-
-interface Episodes {
-  href: string;
-  items: EpisodeItem[];
-  limit: number;
-  next: string;
-  offset: 0;
-  previous?: string;
-  total: number;
 }
 
 interface Genres {
@@ -107,7 +81,7 @@ interface Genres {
 }
 
 interface Markets {
-  genres: Array<string[]>;
+  markets: Array<string[]>;
 }
 
 interface ShowsItem {
@@ -123,7 +97,7 @@ interface ShowsItem {
     id: string;
     images: CoverImg[];
     is_externally_hosted: false;
-    language: string[];
+    languages: string[];
     media_type: string;
     name: string;
     publisher: string;
@@ -133,11 +107,31 @@ interface ShowsItem {
   };
 }
 
-interface Shows {
-  href: string;
-  items: ShowsItem[];
-  limit: number;
-  offset: number;
-  previous?: string;
-  total: number;
+interface EpisodesItem {
+  added_at: string;
+  episode: {
+    audio_preview_url: string;
+    duration_ms: number;
+    description: string;
+    explicit: false;
+    external_urls: ExternalUrls;
+    href: string;
+    html_description: string;
+    id: string;
+    images: CoverImg[];
+    is_externally_hosted: false;
+    is_playable: boolean;
+    language: string;
+    languages: string[];
+    media_type: string;
+    release_date: string;
+    realease_date_precision: string;
+    show: ShowsItem;
+    name: string;
+    publisher: string;
+    media_type: string;
+    total_episodes: number;
+    type: string;
+    uri: string;
+  };
 }

@@ -23,7 +23,9 @@ export default function YourPlaylists(): ReactElement {
   // reveal s/he playlist
   const filteredPlaylist =
     data?.items.filter(
-      (item) => spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id === item.owner.id
+      (item) =>
+        spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id ===
+        item.owner.id
     ) ?? [];
 
   return (
@@ -35,7 +37,11 @@ export default function YourPlaylists(): ReactElement {
             key={item.id}
             coverImage={item.images[0].url}
             title={item.name}
-            description={item.description}
+            description={
+              item.description.length
+                ? item.description
+                : `by ${item.owner.display_name}`
+            }
           />
         ))}
       </ResponsiveSwiper>
