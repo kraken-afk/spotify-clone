@@ -99,3 +99,7 @@ interface Shows {
   previous?: string;
   total: number;
 }
+
+interface Genres {
+  genres: Array<string[]>;
+}

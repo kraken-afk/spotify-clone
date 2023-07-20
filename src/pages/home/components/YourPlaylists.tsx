@@ -5,6 +5,7 @@ import ResponsiveSwiper from "~/components/ResponseiveSwiper";
 import Card from "~/components/Card";
 import Section from "./Section";
 import SpotifyManagerContext from "~/context/SpotfyManagerContext";
+import { SpotifyManagerKey } from "~/global/constants";
 
 export default function YourPlaylists(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
@@ -16,13 +17,13 @@ export default function YourPlaylists(): ReactElement {
     { method: "GET" }
   );
 
-  if (data) spotfyManager.set<Playlists>("playlists", data);
+  if (data) spotfyManager.set<Playlists>(SpotifyManagerKey.PLAYLISTS, data);
 
   // filter playlist based on current user
   // reveal s/he playlist
   const filteredPlaylist =
     data?.items.filter(
-      (item) => spotfyManager.get<CurrentProfile>("user").id === item.owner.id
+      (item) => spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id === item.owner.id
     ) ?? [];
 
   return (
