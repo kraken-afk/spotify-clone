@@ -5,7 +5,7 @@ import SpotifyManagerContext from "~/context/SpotfyManagerContext";
 import useFetchSpotifyBatch from "~/hooks/useFetchSpotifyBatch";
 import greetTime from "~/libs/greetTime";
 import FeaturedPlaylist from "./components/FeaturedPlaylist";
-import NavBar from "./components/NavBar";
+import NavBar from "../../components/NavBar";
 import YourPlaylists from "./components/YourPlaylists";
 import ShowSection from "./components/ShowsSection";
 import LocalLoader from "~/components/LocalLoader";

@@ -1,4 +1,4 @@
-import { forwardRef, type ReactElement } from "react";
+import { forwardRef, type ReactElement, type MouseEventHandler } from "react";
 import "~/styles/card.scss";
 
 interface CardContent {
@@ -7,11 +7,13 @@ interface CardContent {
   description?: string;
   className?: string;
   type?: string;
+  onClick?: MouseEventHandler;
 }
 
 const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement => {
   return (
     <div
+      onClick={props.onClick}
       ref={ref}
       className={`w-48 h-64 p-4 rounded-md bg-black-expose shadow-md hover:bg-neutral-800 transition-all duration-300 cursor-pointer relative card ${props.className}`}
     >
