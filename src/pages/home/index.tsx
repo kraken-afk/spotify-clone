@@ -7,8 +7,9 @@ import greetTime from "~/libs/greetTime";
 import FeaturedPlaylist from "./components/FeaturedPlaylist";
 import NavBar from "./components/NavBar";
 import YourPlaylists from "./components/YourPlaylists";
+import ShowSection from "./components/ShowsSection";
+import LocalLoader from "~/components/LocalLoader";
 import "~/styles/utils.scss";
-// import ShowSection from "./components/ShowsSection";
 
 export default function Home(): ReactElement {
   const token = useContext(CredentialContext) as Credential;
@@ -27,9 +28,9 @@ export default function Home(): ReactElement {
     token
   );
   const { data, isLoading } = userResponse;
-  const { data: genres } = genresResponse as { data: Genres };
+  const { data: genres, isLoading: isGenresLoading } = genresResponse;
 
-  if (isLoading) return <h1>Loading..</h1>;
+  if (isLoading || isGenresLoading) return <LocalLoader />;
 
   const { images, display_name } = data as CurrentProfile;
 
@@ -39,9 +40,7 @@ export default function Home(): ReactElement {
       data as CurrentProfile
     );
 
-  if (genres) spotfyManager.set<Genres>(SpotifyManagerKey.GENRES, genres);
-
-  console.log(spotfyManager);
+  if (genres) spotfyManager.set<Genres>(SpotifyManagerKey.GENRES, genres as Genres);
 
   return (
     <>
@@ -58,7 +57,7 @@ export default function Home(): ReactElement {
         <FeaturedPlaylist />
 
         {/* Shows section */}
-        {/* <ShowSection /> */}
+        <ShowSection />
       </div>
     </>
   );

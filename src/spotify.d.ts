@@ -4,7 +4,9 @@ interface CoverImg {
   width: number;
 }
 
-interface ExternalUrls { spotify: string }
+interface ExternalUrls {
+  spotify: string;
+}
 
 interface CurrentProfile {
   country: string;
@@ -30,14 +32,14 @@ interface CurrentProfile {
 interface PlaylistItem {
   collaborative: boolean;
   description: string;
-  external_urls: ExternalUrls
+  external_urls: ExternalUrls;
   href: string;
   id: string;
   images: Array<CoverImg>;
   name: string;
   owner: {
     display_name: string;
-    external_urls: ExternalUrls
+    external_urls: ExternalUrls;
     href: string;
     id: string;
     type: string;
@@ -64,7 +66,7 @@ interface Playlists {
   total: number;
 }
 
-interface ShowItem {
+interface EpisodeItem {
   audio_preview_url: string;
   description: string;
   duration_ms: number;
@@ -90,9 +92,9 @@ interface FeaturedPlaylist {
   playlists: Playlists;
 }
 
-interface Shows {
+interface Episodes {
   href: string;
-  items: ShowItem[];
+  items: EpisodeItem[];
   limit: number;
   next: string;
   offset: 0;
@@ -102,4 +104,40 @@ interface Shows {
 
 interface Genres {
   genres: Array<string[]>;
+}
+
+interface Markets {
+  genres: Array<string[]>;
+}
+
+interface ShowsItem {
+  added_at: string;
+  show: {
+    available_markets: Markets;
+    copyrights: string;
+    description: string;
+    explicit: false;
+    external_urls: ExternalUrls;
+    href: string;
+    html_description: string;
+    id: string;
+    images: CoverImg[];
+    is_externally_hosted: false;
+    language: string[];
+    media_type: string;
+    name: string;
+    publisher: string;
+    total_episodes: number;
+    type: string;
+    uri: string;
+  };
+}
+
+interface Shows {
+  href: string;
+  items: ShowsItem[];
+  limit: number;
+  offset: number;
+  previous?: string;
+  total: number;
 }

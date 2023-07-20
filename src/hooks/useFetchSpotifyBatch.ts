@@ -17,7 +17,6 @@ export default function useFetchSpotifyBatch<T = unknown>(
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
-          console.log(key);
           const url = endpointInit[key].url;
 
           const meta: Record<string, any> = { ...endpointInit[key] };
