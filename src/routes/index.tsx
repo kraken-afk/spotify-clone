@@ -1,11 +1,11 @@
 import { forwardRef, type MutableRefObject, type ReactElement } from "react";
-import { Route } from "wouter";
 import Home from "~/pages/home";
 import Search from "~/pages/search";
 import Playlist from "~/pages/[playlist]";
+import Route from "./Route";
 
 const AppRoute = forwardRef((_props, ref): ReactElement => {
-
+  console.log("<AppRoute />");
   return (
     <main
       className="rounded-[7px] transition-all bg-base w-full main relative"
@@ -20,7 +20,7 @@ const AppRoute = forwardRef((_props, ref): ReactElement => {
       </Route>
 
       <Route path="/playlist/:id">
-        {(params) => <Playlist id={params.id} />}
+        {(params) => <Playlist id={params.id as string} />}
       </Route>
     </main>
   );
