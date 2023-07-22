@@ -1,5 +1,5 @@
 import { ReactElement, forwardRef, type MutableRefObject } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import logoFull from "~/images/logo-full.svg";
 import logo from "~/images/logo-mobile.svg";
 
@@ -12,7 +12,7 @@ const SideBar = forwardRef((_props, ref): ReactElement => {
       </picture>
       <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-[.3rem] max-w-[300px]  overflow-hidden">
         <div>
-          <Link href="/">
+          <Link to="/">
             <div
               aria-label="Home"
               className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all"
@@ -32,7 +32,7 @@ const SideBar = forwardRef((_props, ref): ReactElement => {
             </div>
           </Link>
 
-          <Link href="/search">
+          <Link to="/search">
             <div
               aria-label="Search"
               className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all"

@@ -6,7 +6,7 @@ import Card from "~/components/Card";
 import Section from "./Section";
 import SpotifyManagerContext from "~/context/SpotfyManagerContext";
 import { SpotifyManagerKey } from "~/global/constants";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 export default function YourPlaylists(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
@@ -35,7 +35,7 @@ export default function YourPlaylists(): ReactElement {
       <h2 className="sub-title mb-4">Your playlist</h2>
       <ResponsiveSwiper isLoading={isLoading} containerRef={containerRef}>
         {filteredPlaylist?.map((item) => (
-          <Link key={item.id} href={`/playlist/${item.id}`}>
+          <Link key={item.id} to={`/playlist/${item.id}`}>
             <Card
               coverImage={item.images[0].url}
               title={item.name}

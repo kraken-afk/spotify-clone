@@ -1,29 +1,12 @@
-import { useEffect, type ReactElement, useRef } from "react";
+import { type ReactElement } from "react";
 import "~/styles/loader.scss";
 import Modal from "./Modal";
-import Typed from "typed.js";
 
 interface LoaderProps {
   title?: string;
 }
 
 export default function Loader({ title }: LoaderProps): ReactElement {
-  const titleRef = useRef(null);
-
-  if (title)
-    useEffect(() => {
-      const typed = new Typed(titleRef.current, {
-        strings: [title],
-        typeSpeed: 45,
-        shuffle: true,
-        showCursor: false,
-      });
-
-      return () => {
-        typed.destroy();
-      };
-    }, []);
-
   return (
     <Modal>
       <div className="loader-wrapper">
@@ -40,7 +23,6 @@ export default function Loader({ title }: LoaderProps): ReactElement {
         </div>
         {title ? (
           <span
-            ref={titleRef}
             className="block text-2xl bold text-white translate-y-[4.5rem] capitalize"
           ></span>
         ) : (
