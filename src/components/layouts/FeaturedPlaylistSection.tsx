@@ -1,11 +1,11 @@
 import { useContext, useRef, type ReactElement } from "react";
 import CredentialContext from "~/context/CredentialContext";
 import useFetchSpotify from "~/hooks/useFetchSpotify";
-import ResponsiveSwiper from "~/components/ResponseiveSwiper";
-import Card from "~/components/Card";
-import Section from "./Section";
+import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
+import Card from "~/components/ui/Card";
+import Section from "~/components/ui/Section";
 
-export default function FeaturedPlaylist(): ReactElement {
+export default function FeaturedPlaylistSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
   const token = useContext(CredentialContext) as Credential;
   const { data, isLoading } = useFetchSpotify<FeaturedPlaylist>(

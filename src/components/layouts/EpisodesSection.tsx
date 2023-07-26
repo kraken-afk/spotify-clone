@@ -1,9 +1,9 @@
 import { useContext, type ReactElement, useRef } from "react";
 import CredentialContext from "~/context/CredentialContext";
-import Section from "./Section";
+import Section from "../ui/Section";
 import useFetchSpotify from "~/hooks/useFetchSpotify";
-import ResponsiveSwiper from "~/components/ResponseiveSwiper";
-import Card from "~/components/Card";
+import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
+import Card from "~/components/ui/Card";
 
 export default function EpisodesSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);

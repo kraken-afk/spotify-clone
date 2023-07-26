@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "~/styles/utils.scss";
-import SkeletonCard from "./skeletons/SkeletonCard";
+import SkeletonCard from "../skeletons/SkeletonCard";
 
 interface ResponsiveSwiperProps {
   isLoading: boolean;

@@ -1,14 +1,14 @@
 import { useContext, useRef, type ReactElement } from "react";
+import Card from "~/components/ui/Card";
+import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
 import CredentialContext from "~/context/CredentialContext";
-import useFetchSpotify from "~/hooks/useFetchSpotify";
-import ResponsiveSwiper from "~/components/ResponseiveSwiper";
-import Card from "~/components/Card";
-import Section from "./Section";
 import SpotifyManagerContext from "~/context/SpotfyManagerContext";
 import { SpotifyManagerKey } from "~/global/constants";
-import { Link } from "react-router-dom";
+import useFetchSpotify from "~/hooks/useFetchSpotify";
+import { Link } from "~/routes";
+import Section from "~/components/ui/Section";
 
-export default function YourPlaylists(): ReactElement {
+export default function YourPlaylistsSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
   const token = useContext(CredentialContext) as Credential;
   const spotfyManager = useContext(SpotifyManagerContext);

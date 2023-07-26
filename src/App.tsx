@@ -1,16 +1,16 @@
 import { useRef, type ReactElement } from "react";
-import Loader from "./components/Loader";
-import SideBar from "./components/SideBar";
+import Loader from "./components/popups/Loader";
+import SideBar from "./components/ui/SideBar";
 import Split from "./components/Split";
 import useAuthorization from "./hooks/useAuthorization";
-import ErrorModal from "./components/ErrorModal";
+import ErrorModal from "./components/popups/ErrorModal";
 import CredentialContext from "./context/CredentialContext";
 import AppRoute from "./routes";
 import "./styles/main.scss";
 
 export default function App(): ReactElement {
-  const navBarRef = useRef<HTMLElement>();
-  const mainRef = useRef<HTMLElement>();
+  const navBarRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
   const refs = { prevRef: navBarRef, nextRef: mainRef };
   const { data: token, isLoading, error } = useAuthorization();
 
@@ -18,7 +18,7 @@ export default function App(): ReactElement {
     return <ErrorModal />;
 
   if (!token || isLoading)
-    return <Loader title="loading..." />;
+    return <Loader />;
 
   return (
   <CredentialContext.Provider value={token}>

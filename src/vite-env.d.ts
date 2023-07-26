@@ -23,3 +23,8 @@ interface Credential {
   token_type: string;
   refresh_token: string;
 }
+
+interface NavigationButtonRef {
+  enable: () => void;
+  disable: () => void;
+}

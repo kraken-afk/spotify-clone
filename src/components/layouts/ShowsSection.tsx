@@ -1,9 +1,9 @@
 import { useContext, type ReactElement, useRef } from "react";
-import Section from "./Section";
+import Section from "~/components/ui/Section";
 import useFetchSpotify from "~/hooks/useFetchSpotify";
 import CredentialContext from "~/context/CredentialContext";
-import ResponsiveSwiper from "~/components/ResponseiveSwiper";
-import Card from "~/components/Card";
+import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
+import Card from "~/components/ui/Card";
 
 export default function ShowSection(): ReactElement {
   const token = useContext(CredentialContext) as Credential;

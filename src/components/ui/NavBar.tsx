@@ -1,5 +1,7 @@
 import { type TargetAndTransition, type VariantLabels, motion } from "framer-motion";
 import { useRef, type ReactElement, useEffect } from "react";
+import BackBtn from "./BackBtn";
+import NextBtn from "./NextBtn";
 
 interface HomeNavBarProps {
   profile: string;
@@ -31,36 +33,8 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
   return (
     <div className="bg-opacity-40 transition-all duration-300 flex justify-between items-center sticky top-[-1px] left-0 z-10 backdrop-blur bg-transparent p-4" ref={navRef}>
       <div className="flex">
-        <button
-          type="button"
-          className="w-[32px] h-[32px] bg-black rounded-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed first:mr-2"
-          disabled
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="#fff"
-          >
-            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
-          </svg>
-        </button>
-        <button
-          type="button"
-          className="w-[32px] h-[32px] bg-black rounded-full flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="#fff"
-          >
-            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-          </svg>
-        </button>
+        <BackBtn />
+        <NextBtn />
       </div>
       <div className="flex items-center">
         <motion.button

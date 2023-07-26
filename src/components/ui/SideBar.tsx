@@ -1,5 +1,5 @@
 import { ReactElement, forwardRef, type MutableRefObject } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "~/routes";
 import logoFull from "~/images/logo-full.svg";
 import logo from "~/images/logo-mobile.svg";
 
