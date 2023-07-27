@@ -4,6 +4,7 @@ import useFetchSpotify from "~/hooks/useFetchSpotify";
 import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
 import Card from "~/components/ui/Card";
 import Section from "~/components/ui/Section";
+import { Link } from "~/routes";
 
 export default function FeaturedPlaylistSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
@@ -19,12 +20,14 @@ export default function FeaturedPlaylistSection(): ReactElement {
       <h2 className="sub-title mb-4">Your featured playlist</h2>
       <ResponsiveSwiper isLoading={isLoading} containerRef={containerRef}>
         {data?.playlists.items.map((item) => (
-          <Card
-            key={item.id}
-            coverImage={item.images[0].url}
-            title={item.name}
-            description={item.description}
-          />
+          <Link key={item.id} to={`/playlist/${item.id}`}>
+            <Card
+              key={item.id}
+              coverImage={item.images[0].url}
+              title={item.name}
+              description={item.description}
+            />
+          </Link>
         ))}
       </ResponsiveSwiper>
     </Section>

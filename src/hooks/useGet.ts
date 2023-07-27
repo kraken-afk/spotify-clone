@@ -1,14 +1,21 @@
-import { type UseQueryResult, useQuery } from "@tanstack/react-query";
+export default async function useGet<T>(
+  url: string,
+  metadata?: RequestInit,
+  token?: Credential
+) {
+  const meta: Record<string, any> = { ...metadata };
 
-export default function useGet<T>(url: string, metadata?: RequestInit): UseQueryResult<T> {
-  return useQuery({
-    cacheTime: 1800,
-    queryFn: async () => {
-      const response = await fetch(url, metadata);
-      const data = await response.json();
+  if (token) {
+    if ("headers" in meta)
+      meta.headers["Authorization"] = `${token.token_type} ${token.access_token}`;
+    else
+      meta.headers = {
+        Authorization: `${token.token_type} ${token.access_token}`,
+      };
+  }
 
-      return data;
-    },
-    refetchOnWindowFocus: false,
-  });
+  const response = await fetch(url, meta);
+  const data = await response.json();
+
+  return data as T;
 }

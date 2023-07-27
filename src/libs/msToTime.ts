@@ -26,7 +26,5 @@ export default function msToTime(ms: number): string {
 
   if (minute) result = result.concat(`${minute} min${minute === 1 ? "" : "s"} `);
 
-  console.log(result);
-
   return result;
 }

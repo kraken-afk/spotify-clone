@@ -1,0 +1,9 @@
+.playlist-title {
+  font-size: clamp(2.4rem, -10rem + 32vw, 3rem);
+  font-weight: bold;
+  text-overflow: clip;
+
+  @media screen and (min-width: 1200px) {
+    font-size: 4rem;
+  }
+}

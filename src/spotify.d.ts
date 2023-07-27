@@ -1,7 +1,7 @@
 interface CoverImg {
   url: string;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
 }
 
 interface ExternalUrls {
@@ -63,6 +63,75 @@ interface PlaylistItem {
   };
   type: string;
   uri: string;
+}
+
+interface Artist {
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  name: string;
+  type: string;
+  uri: string;
+}
+
+interface Album {
+  album_type: string;
+  artists: Artist[];
+  available_markest: Markets;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  images: CoverImg;
+  name: string;
+  release_date: string;
+  release_date_precision: string;
+  total_tracks: 1;
+  type: string;
+  uri: string;
+}
+
+interface VideoThumbnail {
+  url?: string;
+}
+
+interface ExternalIds {
+  isrc: string;
+}
+
+interface Track {
+  album: Album;
+  artists: Artist[];
+  available_markets: Markets;
+  disc_number: number;
+  duration_ms: number;
+  episode: false;
+  explicit: false;
+  external_ids: ExternalIds;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: boolean;
+  name: string;
+  popularity: number;
+  preview_url: string;
+  track: boolean;
+  track_number: number;
+  type: string;
+  uri: string;
+}
+
+interface TrackItem {
+  added_at: string;
+  added_by: {
+    external_urls: ExternalUrls;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  is_local: boolean;
+  primary_color?: string;
+  track: Track;
+  video_thumbnail: VideoThumbnail;
 }
 
 type Playlists = ContentResponse<PlaylistItem>;
@@ -134,4 +203,31 @@ interface EpisodesItem {
     type: string;
     uri: string;
   };
+}
+
+interface Playlist extends PlaylistItem {
+  followers: { href?: string; total: number };
+  tracks: {
+    href: string;
+    items: TrackItem[];
+    limit: number;
+    next?: string;
+    offset: number;
+    previous?: string;
+    total: number;
+  };
+}
+
+interface User {
+  display_name: string;
+  external_urls: ExternalUrls;
+  followers: {
+    href?: string;
+    total: number;
+  };
+  href: string;
+  id: string;
+  images: CoverImg[];
+  type: string;
+  uri: string;
 }
