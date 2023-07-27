@@ -39,7 +39,7 @@ export default function ResponsiveSwiper({
 
   return (
     <Swiper
-      className="py-4 cursor-grab active:cursor-grabbing"
+      className="py-4"
       spaceBetween={16}
       slidesPerView={slidesCount}
       scrollbar={{ draggable: true }}
