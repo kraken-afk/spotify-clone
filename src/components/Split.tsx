@@ -7,10 +7,7 @@ import {
   type ReactNode,
 } from "react";
 
-export default function Split({
-  children,
-  refs,
-}: SplitComponentProps): ReactElement {
+export default function Split({ children, refs }: SplitComponentProps): ReactElement {
   const gutterRef = useRef<HTMLDivElement>();
 
   const mouseHandler = useCallback(() => {
@@ -71,10 +68,7 @@ export default function Split({
   return (
     <>
       {(children as ReactNode[])[0]}
-      <div
-        ref={gutterRef as LegacyRef<HTMLDivElement>}
-        data-type="gutter"
-      ></div>
+      <div ref={gutterRef as LegacyRef<HTMLDivElement>} data-type="gutter"></div>
       {(children as ReactNode[])[1]}
     </>
   );

@@ -7,7 +7,7 @@ export default function BackBtn(): ReactElement {
   const location = useLocation();
 
   useEffect(() => {
-    setTimeout(() => (btnRef.current as HTMLButtonElement).disabled = isBackActive(), 0);
+    setTimeout(() => ((btnRef.current as HTMLButtonElement).disabled = isBackActive()), 0);
   }, [location]);
 
   return (

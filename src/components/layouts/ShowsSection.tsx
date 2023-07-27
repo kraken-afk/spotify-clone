@@ -21,13 +21,13 @@ export default function ShowSection(): ReactElement {
         {data?.items.map((item) => {
           return (
             <Card
-            type="show"
-            key={item.show.id}
-            title={item.show.name}
-            description={item.show.description}
-            coverImage={item.show.images.at(1)?.url as string}
+              type="show"
+              key={item.show.id}
+              title={item.show.name}
+              description={item.show.description}
+              coverImage={item.show.images.at(1)?.url as string}
             />
-          )
+          );
         })}
       </ResponsiveSwiper>
     </Section>

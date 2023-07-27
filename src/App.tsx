@@ -14,14 +14,12 @@ export default function App(): ReactElement {
   const refs = { prevRef: navBarRef, nextRef: mainRef };
   const { data: token, isLoading, error } = useAuthorization();
 
-  if (error)
-    return <ErrorModal />;
+  if (error) return <ErrorModal />;
 
-  if (!token || isLoading)
-    return <Loader />;
+  if (!token || isLoading) return <Loader />;
 
   return (
-  <CredentialContext.Provider value={token}>
+    <CredentialContext.Provider value={token}>
       <div className="app">
         <Split refs={refs}>
           <SideBar ref={navBarRef} />
@@ -31,5 +29,3 @@ export default function App(): ReactElement {
     </CredentialContext.Provider>
   );
 }
-
-

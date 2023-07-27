@@ -7,6 +7,6 @@
   "singleQuote": false,
   "trailingComma": "es5",
   "bracketSameLine": false,
-  "printWidth": 80,
+  "printWidth": 95,
   "proseWrap": "always"
 }

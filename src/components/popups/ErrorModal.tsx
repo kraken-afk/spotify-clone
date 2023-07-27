@@ -18,11 +18,12 @@ export default function ErrorModal(): ReactElement {
         <span className="block font-bold text-2xl capitalize mt-[2.4rem]">
           something went error..
         </span>
-        <a onClick={(event) => {
-          event.preventDefault();
-          localStorage.clear();
-          window.location.href = window.location.origin;
-        }}
+        <a
+          onClick={(event) => {
+            event.preventDefault();
+            localStorage.clear();
+            window.location.href = window.location.origin;
+          }}
           className="cursor-pointer transition-all block text-2xl underline capitalize mt-1 text-blue-500 hover:scale-[.97]"
         >
           Rerfresh

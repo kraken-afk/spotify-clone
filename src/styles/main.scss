@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,7 @@
 
 .app {
   $nav-width: 21%;
-  $gutter-width: .6rem;
+  $gutter-width: 0.6rem;
 
   padding: 10px;
   padding-bottom: 0;
@@ -22,7 +22,11 @@
   .main {
     background: rgb(18, 18, 18);
     background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
-    background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(18, 18, 18, 1) 70%,
+      rgba(33, 33, 33, 1) 100%
+    );
     background: linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
@@ -36,9 +40,9 @@
     }
 
     div[data-type="gutter"] {
-      pointer-events: none
+      pointer-events: none;
     }
   }
 }
 
-@import url('./split-pane.scss');
+@import url("./split-pane.scss");

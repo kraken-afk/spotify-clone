@@ -7,7 +7,7 @@ const SideBar = forwardRef((_props, ref): ReactElement => {
   return (
     <nav className="p-2 px-0" ref={ref as MutableRefObject<HTMLDivElement>}>
       <picture className="block mb-2 py-[.7rem] px-[.3rem overflow-hidden">
-        <source  media="(min-width: 640px )" srcSet={logoFull} />
+        <source media="(min-width: 640px )" srcSet={logoFull} />
         <img src={logo} alt="Spotify logo" draggable="false" className="min-w-max" />
       </picture>
       <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-[.3rem] max-w-[300px]  overflow-hidden">

@@ -22,9 +22,7 @@ export default function Loader({ title }: LoaderProps): ReactElement {
           <div className="square" id="sq9"></div>
         </div>
         {title ? (
-          <span
-            className="block text-2xl bold text-white translate-y-[4.5rem] capitalize"
-          ></span>
+          <span className="block text-2xl bold text-white translate-y-[4.5rem] capitalize"></span>
         ) : (
           ""
         )}

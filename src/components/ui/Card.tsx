@@ -51,6 +51,6 @@ const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement 
       )}
     </div>
   );
-})
+});
 
 export default Card;

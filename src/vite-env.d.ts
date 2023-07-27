@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 /// <reference path="./spotify.d.ts" />
 
-
 declare module "*.svg" {
   const content: string;
   export default content;
@@ -14,7 +13,7 @@ declare module "typed.js" {
 
 interface SplitComponentProps {
   children: ReactNode[];
-  refs: { prevRef: MutableRefObject<HTMLElement>, nextRef: MutableRefObject<HTMLElement> }
+  refs: { prevRef: MutableRefObject<HTMLElement>; nextRef: MutableRefObject<HTMLElement> };
 }
 
 interface Credential {

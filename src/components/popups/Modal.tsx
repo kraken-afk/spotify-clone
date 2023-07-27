@@ -6,10 +6,8 @@ export default function Modal({ children }: PropsWithChildren): ReactElement {
   return (
     <>
       {createPortal(
-      <div className="modal-wrapper">
-          {children}
-        </div>
-        ,document.body as HTMLElement
+        <div className="modal-wrapper">{children}</div>,
+        document.body as HTMLElement
       )}
     </>
   );

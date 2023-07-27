@@ -11,7 +11,7 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
   const navRef = useRef<HTMLDivElement>(null);
   const whileHoverValue: VariantLabels | TargetAndTransition = {
     scale: 1.05,
-    opacity: .8,
+    opacity: 0.8,
   };
 
   useEffect(() => {
@@ -22,16 +22,18 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
     };
     const observer = new IntersectionObserver(([entries]) => {
       if (entries.intersectionRatio < 1)
-        navRef.current?.classList.replace("bg-transparent", "bg-black")
-      else
-        navRef.current?.classList.replace("bg-black", "bg-transparent");
-    }, options)
+        navRef.current?.classList.replace("bg-transparent", "bg-black");
+      else navRef.current?.classList.replace("bg-black", "bg-transparent");
+    }, options);
 
     observer.observe(navRef.current as Element);
   }, [navRef]);
 
   return (
-    <div className="bg-opacity-40 transition-all duration-300 flex justify-between items-center sticky top-[-1px] left-0 z-10 backdrop-blur bg-transparent p-4" ref={navRef}>
+    <div
+      className="bg-opacity-40 transition-all duration-300 flex justify-between items-center sticky top-[-1px] left-0 z-10 backdrop-blur bg-transparent p-4"
+      ref={navRef}
+    >
       <div className="flex">
         <BackBtn />
         <NextBtn />
@@ -57,7 +59,10 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
           </svg>
           <span aria-hidden>Install the apps</span>
         </motion.button>
-        <motion.picture whileHover={whileHoverValue} className="overflow-hidden rounded-full border-[5px] border-black border-solid cursor-pointer">
+        <motion.picture
+          whileHover={whileHoverValue}
+          className="overflow-hidden rounded-full border-[5px] border-black border-solid cursor-pointer"
+        >
           <img src={profile} alt="Profile image" width={32} height={32} />
         </motion.picture>
       </div>

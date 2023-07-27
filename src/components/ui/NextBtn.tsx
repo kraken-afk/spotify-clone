@@ -4,10 +4,10 @@ import { isForwardActive } from "~/routes";
 
 export default function NextBtn(): ReactElement {
   const btnRef = useRef<HTMLButtonElement>(null);
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
-    setTimeout(() => (btnRef.current as HTMLButtonElement).disabled = isForwardActive(), 0);
+    setTimeout(() => ((btnRef.current as HTMLButtonElement).disabled = isForwardActive()), 0);
   }, [location]);
 
   return (

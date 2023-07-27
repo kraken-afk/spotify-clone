@@ -60,16 +60,13 @@ export default function useAuthorization() {
           code_verifier: verifier,
         };
 
-        const tokenResponse = await fetch(
-          "https://accounts.spotify.com/api/token",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams(body),
-          }
-        );
+        const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(body),
+        });
 
         const token = (await tokenResponse.json()) as Credential;
 
@@ -87,16 +84,13 @@ export default function useAuthorization() {
           client_secret: client_secret,
         };
 
-        const tokenResponse = await fetch(
-          "https://accounts.spotify.com/api/token",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: new URLSearchParams(body),
-          }
-        );
+        const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(body),
+        });
 
         const token = (await tokenResponse.json()) as Credential;
 

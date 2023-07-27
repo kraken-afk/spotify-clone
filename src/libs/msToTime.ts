@@ -22,11 +22,9 @@ export default function msToTime(ms: number): string {
 
   let result: string = "";
 
-  if (hour)
-    result = result.concat(`${hour} hr${hour === 1 ? "" : "s"} `);
+  if (hour) result = result.concat(`${hour} hr${hour === 1 ? "" : "s"} `);
 
-  if (minute)
-    result = result.concat(`${minute} min${minute === 1 ? "" : "s"} `);
+  if (minute) result = result.concat(`${minute} min${minute === 1 ? "" : "s"} `);
 
   console.log(result);
 

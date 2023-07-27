@@ -9,7 +9,9 @@ export default function EpisodesSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
   const token = useContext(CredentialContext) as Credential;
   const { data, isLoading } = useFetchSpotify<Episodes>(
-    "https://api.spotify.com/v1/me/episodes", token, { method: "GET" }
+    "https://api.spotify.com/v1/me/episodes",
+    token,
+    { method: "GET" }
   );
 
   return (

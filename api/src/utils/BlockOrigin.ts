@@ -5,7 +5,7 @@ import ForbiddenError from "../errors/ForbiddenError.ts";
 
 const BlockOrigin = {
   get allows(): string[] {
-    const origin = ["https://krakenify-spotify-clone.vercel.app/"];;
+    const origin = ["https://krakenify-spotify-clone.vercel.app/"];
 
     return origin;
   },

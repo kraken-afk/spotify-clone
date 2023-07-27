@@ -24,9 +24,7 @@ export default function useFetchSpotifyBatch<T = unknown>(
           delete meta.url;
 
           if ("headers" in meta)
-            meta.headers[
-              "Authorization"
-            ] = `${token.token_type} ${token.access_token}`;
+            meta.headers["Authorization"] = `${token.token_type} ${token.access_token}`;
           else
             meta.headers = {
               Authorization: `${token.token_type} ${token.access_token}`,

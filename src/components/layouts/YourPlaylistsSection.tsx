@@ -25,9 +25,7 @@ export default function YourPlaylistsSection(): ReactElement {
   // reveal s/he playlist
   const filteredPlaylist =
     data?.items.filter(
-      (item) =>
-        spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id ===
-        item.owner.id
+      (item) => spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id === item.owner.id
     ) ?? [];
 
   return (
@@ -40,9 +38,7 @@ export default function YourPlaylistsSection(): ReactElement {
               coverImage={item.images[0].url}
               title={item.name}
               description={
-                item.description.length
-                  ? item.description
-                  : `by ${item.owner.display_name}`
+                item.description.length ? item.description : `by ${item.owner.display_name}`
               }
             />
           </Link>

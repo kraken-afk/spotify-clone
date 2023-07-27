@@ -1,9 +1,4 @@
-import {
-  useLayoutEffect,
-  useState,
-  type RefObject,
-  PropsWithChildren
-} from "react";
+import { useLayoutEffect, useState, type RefObject, PropsWithChildren } from "react";
 import { Scrollbar, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -17,7 +12,9 @@ interface ResponsiveSwiperProps {
 }
 
 export default function ResponsiveSwiper({
-  isLoading, children, containerRef
+  isLoading,
+  children,
+  containerRef,
 }: ResponsiveSwiperProps & PropsWithChildren) {
   const [slidesCount, setSlidesCount] = useState<number>(0);
 
@@ -32,7 +29,6 @@ export default function ResponsiveSwiper({
 
     setSlidesCount(count / cardX);
   }, [isLoading]);
-
 
   if (isLoading)
     return (
@@ -49,11 +45,9 @@ export default function ResponsiveSwiper({
       scrollbar={{ draggable: true }}
       modules={[Scrollbar, Virtual]}
     >
-     { (children as any[]).map((node, index) =>
-      <SwiperSlide key={index.toString().concat("-swiperslide")}>
-        {node}
-      </SwiperSlide>
-      )}
+      {(children as any[]).map((node, index) => (
+        <SwiperSlide key={index.toString().concat("-swiperslide")}>{node}</SwiperSlide>
+      ))}
     </Swiper>
   );
 }

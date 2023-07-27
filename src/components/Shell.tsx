@@ -7,7 +7,9 @@ import GenericContext from "~/context/GenericContext";
 
 export default function Shell({ children }: PropsWithChildren): ReactElement {
   const token = useContext(CredentialContext) as Credential;
-  const { data, isLoading } = useFetchSpotify("https://api.spotify.com/v1/me", token, { method: "GET" });
+  const { data, isLoading } = useFetchSpotify("https://api.spotify.com/v1/me", token, {
+    method: "GET",
+  });
 
   if (isLoading) return <LocalLoader />;
 

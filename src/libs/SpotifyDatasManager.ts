@@ -1,8 +1,6 @@
 export default class SpotifyDatasManager {
-
   public set<T = unknown>(key: string, value: T): void {
-    if (typeof value !== "object")
-      throw new TypeError("value must be type of object");
+    if (typeof value !== "object") throw new TypeError("value must be type of object");
 
     localStorage.setItem(key, JSON.stringify(value));
   }
@@ -13,6 +11,6 @@ export default class SpotifyDatasManager {
 
   public map<T = unknown, K = unknown>(key: string, callback: (value: T) => K): K {
     const data = JSON.parse(localStorage[key]) as T;
-    return (callback(data) as K);
+    return callback(data) as K;
   }
 }

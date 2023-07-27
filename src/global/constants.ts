@@ -1,5 +1,5 @@
 export const enum SpotifyManagerKey {
   USER = "user",
-  PLAYLISTS= "playlists",
+  PLAYLISTS = "playlists",
   GENRES = "genres",
 }

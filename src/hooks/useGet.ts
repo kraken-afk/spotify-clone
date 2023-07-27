@@ -10,5 +10,5 @@ export default function useGet<T>(url: string, metadata?: RequestInit): UseQuery
       return data;
     },
     refetchOnWindowFocus: false,
-  })
+  });
 }

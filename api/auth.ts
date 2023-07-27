@@ -8,11 +8,9 @@ export default serve(async (req: Request) => {
     data: { client_id: CLIENT_ID, client_secret: CLIENT_SECRET },
   };
 
-  return new Response(
-    JSON.stringify(body), {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
-})
+  return new Response(JSON.stringify(body), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+});
