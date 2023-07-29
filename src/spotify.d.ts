@@ -81,7 +81,7 @@ interface Album {
   external_urls: ExternalUrls;
   href: string;
   id: string;
-  images: CoverImg;
+  images: CoverImg[];
   name: string;
   release_date: string;
   release_date_precision: string;

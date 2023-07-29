@@ -1,4 +1,5 @@
 import { forwardRef, type ReactElement, type MouseEventHandler } from "react";
+import PlayButton from "./PlayButton";
 import "~/styles/card.scss";
 
 interface CardContent {
@@ -36,18 +37,7 @@ const Card = forwardRef<HTMLDivElement, CardContent>((props, ref): ReactElement 
         dangerouslySetInnerHTML={{ __html: props.description as string }}
       ></p>
       {props?.type !== "show" && (
-        <div className="absolute shadow-lg right-6 bottom-20 h-12 w-12 bg-green opacity-0 rounded-full flex justify-center items-center play-btn transition-all duration-300">
-          <svg
-            className="block translate-x-[2px]"
-            xmlns="http://www.w3.org/2000/svg"
-            width="38"
-            height="38"
-            viewBox="0 0 24 24"
-            fill="#000"
-          >
-            <path d="M7 6v12l10-6z"></path>
-          </svg>
-        </div>
+        <PlayButton className=" absolute shadow-lg right-6 bottom-20 opacity-0 play-btn" />
       )}
     </div>
   );
