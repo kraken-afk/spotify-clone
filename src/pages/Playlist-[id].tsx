@@ -43,19 +43,22 @@ export default function Playlist(): ReactElement {
       return { playlist, owner } as FetchResponse;
     },
   });
+  const theadScrollHandler = () => {
+    const element = theadRef.current;
+    const top = element?.getBoundingClientRect().top as number;
+
+    if (!element?.classList.contains("bg-main-black") && top === 83)
+      element?.classList.replace("bg-transparent", "bg-main-black");
+
+    if (element?.classList.contains("bg-main-black") && top > 83)
+      element?.classList.replace("bg-main-black", "bg-transparent");
+  };
 
   useEffect(() => {
     const element = document.querySelector(".main") as HTMLElement;
-    element.addEventListener("scroll", () => {
-      const element = theadRef.current;
-      const top = element?.getBoundingClientRect().top as number;
+    element.addEventListener("scroll", theadScrollHandler);
 
-      if (!element?.classList.contains("bg-main-black") && top === 83)
-        element?.classList.replace("bg-transparent", "bg-main-black");
-
-      if (element?.classList.contains("bg-main-black") && top > 83)
-        element?.classList.replace("bg-main-black", "bg-transparent");
-    });
+    return () => element.removeEventListener("scroll", theadScrollHandler);
   }, []);
 
   if (isLoading) return <LocalLoader />;
