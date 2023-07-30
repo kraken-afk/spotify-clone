@@ -11,7 +11,10 @@ import TimeFive from "~/components/icons/TimeFive";
 import PlayButton from "~/components/ui/PlayButton";
 import Time from "~/components/icons/Time.";
 import relativeDateOffset from "~/libs/relativeDateOffset";
-import FooterSection from "../components/layouts/FooterSection";
+import FooterSection from "~/components/layouts/FooterSection";
+import GenericContext from "~/context/GenericContext";
+import Heart from "~/components/icons/Heart";
+import Play from "~/components/icons/Play";
 import "~/styles/playlist-[id].scss";
 
 interface FetchResponse {
@@ -22,6 +25,7 @@ interface FetchResponse {
 export default function Playlist(): ReactElement {
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const token = useContext(CredentialContext) as Credential;
+  const { tracks } = useContext(GenericContext) as InitialResource;
   const { id } = useParams();
   const { data, isLoading } = useQuery({
     queryKey: [id],
@@ -92,15 +96,17 @@ export default function Playlist(): ReactElement {
                 alt="profile"
                 width={28}
               />
-              <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">{playlist?.owner.display_name}</span>
+              <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
+                {playlist?.owner.display_name}
+              </span>
               <span className="mx-[1px]">&#x2022;</span>
             </span>
-            <span>
+            <span className="flex items-center gap-1">
               {playlist?.followers.total}{" "}
               <HeartSolid size={16} className="fill-essential-sub" />{" "}
               <span className="mx-[1px]">&#x2022;</span>
             </span>
-            <span>
+            <span className="flex items-center gap-1">
               {playlist?.tracks.total} <Music size={16} className="fill-essential-sub" />{" "}
               <span className="mx-[1px]">&#x2022;</span>
             </span>
@@ -126,58 +132,99 @@ export default function Playlist(): ReactElement {
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
         </div>
       </div>
-        <table className="w-full">
-          <thead
-            ref={theadRef}
-            className="text-neutral-500 border-b-neutral-500 border-b-[1px] border-solid sticky left-0 top-[73px] bg-transparent transition-all duration-75"
-          >
-            <tr className="items-center">
-              <th className="font-normal text-right  py-2 px-4">#</th>
-              <th className="font-normal text-left  py-2">Title</th>
-              <th className="font-normal text-left  py-2">Album</th>
-              <th className="font-normal text-left  py-2 pr-4">Added at</th>
-              <th className="text-center">
-                <Time size={16} className="fill-neutral-500" />
-              </th>
-            </tr>
-          </thead>
-          <tbody className="px-4">
-            {playlist.tracks.items.map((item, index) => {
-              return (
-                <tr key={item.track.id} className="cursor-pointer hover:bg-main-black">
-                  <td className="text-sm py-4 px-4 text-essential-sub text-right">
-                    {index + 1}
-                  </td>
-                  <td className="text-sm py-4">
-                    <div className="flex items-center gap-4">
+      <table className="w-full">
+        <thead
+          ref={theadRef}
+          className="text-neutral-500 border-b-neutral-500 border-b-[1px] border-solid sticky left-0 top-[73px] bg-transparent transition-all duration-75 z-10"
+        >
+          <tr className="items-center">
+            <th className="font-normal text-right py-2 px-4">#</th>
+            <th className="font-normal text-left py-2">Title</th>
+            <th className="font-normal text-left py-2">Album</th>
+            <th className="font-normal text-left py-2">Added at</th>
+            <th></th>
+            <th className="text-center">
+              <Time size={16} className="fill-neutral-500" />
+            </th>
+            <th className="pr-4"></th>
+          </tr>
+        </thead>
+        <tbody className="px-4">
+          {playlist.tracks.items.map((item, index) => {
+            return (
+              <tr key={item.track.id} className="cursor-pointer hover:bg-main-black song-row">
+                <td className="text-sm py-4 px-4 text-essential-sub text-right relative">
+                  <span className="number">{index + 1}</span>
+                  <span className="play-btn hidden absolute right-2 top-1/2 translate-y-[-50%]">
+                    <Play size={24} className="fill-essential-sub inline" />
+                  </span>
+                </td>
+                <td className="text-sm py-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-[48px] h-[48px] bg-neutral-700 overflow-hidden">
                       <img
-                        src={item.track.album.images[0].url}
+                        src={item.track.album.images[item.track.album.images.length - 1].url}
                         alt="artist profile"
                         loading="lazy"
                         width={48}
                       />
-                      <div className="flex flex-col px-2">
-                        <span className="truncate max-w-[250px] hover:underline underline-offset-2">
-                          {item.track.name}
-                        </span>
-                        <span className="text-essential-sub hover:underline underline-offset-2">
-                          {item.track.artists[0].name}
-                        </span>
-                      </div>
                     </div>
-                  </td>
-                  <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
-                    {item.track.album.name}
-                  </td>
-                  <td className="text-sm py-4">{relativeDateOffset(item.added_at)}</td>
-                  <td className="text-sm py-4 pr-4">
-                    {msToTime(item.track.duration_ms, TimeConverterEnum.DURATION)}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    <div className="flex flex-col px-2">
+                      <span className="truncate max-w-[250px] hover:underline underline-offset-2">
+                        {item.track.name}
+                      </span>
+                      <span className="text-essential-sub hover:underline underline-offset-2">
+                        {item.track.artists[0].name}
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
+                  {item.track.album.name}
+                </td>
+                <td className="text-sm py-4">{relativeDateOffset(item.added_at)}</td>
+                <td>
+                  <div className="p-4 relative flex items-center justify-center">
+                    {tracks.items.find((savedItem) => {
+                      return savedItem.track.id === item.track.id;
+                    }) ? (
+                      <button
+                        type="button"
+                        className="bg-transparent border-none w-min h-min heart-solid"
+                        onClick={() => alert("unlove")}
+                      >
+                        <HeartSolid size={20} className=" fill-green" />
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                    <button
+                      type="button"
+                      className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] hidden bg-transparent border-none w-min h-min heart-btn"
+                      onClick={() => alert("love")}
+                    >
+                      <Heart size={20} className="fill-essential-sub" />
+                    </button>
+                  </div>
+                </td>
+                <td className="text-sm py-4">
+                  {msToTime(item.track.duration_ms, TimeConverterEnum.DURATION)}
+                </td>
+                <td>
+                  <div
+                    className="flex gap-1 items-center cursor-pointer opacity-30 transition-all duration-0 hover:opacity-100 p-4"
+                    onClick={() => alert("menu")}
+                  >
+                    <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+                    <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+                    <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       <div className="p-4">
         <FooterSection />
       </div>

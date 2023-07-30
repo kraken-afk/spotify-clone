@@ -231,3 +231,16 @@ interface User {
   type: string;
   uri: string;
 }
+
+interface SavedTracks {
+  href: string;
+  items: Array<{
+    added_at: string;
+    track: Track;
+  }>;
+  limit: number;
+  next?: string;
+  offset: number;
+  previous?: string;
+  total: number;
+}

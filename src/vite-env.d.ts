@@ -27,3 +27,8 @@ interface NavigationButtonRef {
   enable: () => void;
   disable: () => void;
 }
+
+interface InitialResource {
+  profile: CurrentProfile;
+  tracks: SavedTracks;
+}

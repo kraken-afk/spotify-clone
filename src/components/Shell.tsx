@@ -1,19 +1,30 @@
 import { PropsWithChildren, useContext, type ReactElement } from "react";
 import NavBar from "./ui/NavBar";
 import CredentialContext from "~/context/CredentialContext";
-import useFetchSpotify from "~/hooks/useFetchSpotify";
 import LocalLoader from "./popups/LocalLoader";
 import GenericContext from "~/context/GenericContext";
+import { useQuery } from "@tanstack/react-query";
+import useGet from "../hooks/useGet";
 
 export default function Shell({ children }: PropsWithChildren): ReactElement {
   const token = useContext(CredentialContext) as Credential;
-  const { data, isLoading } = useFetchSpotify("https://api.spotify.com/v1/me", token, {
-    method: "GET",
+  const { data, isLoading } = useQuery({
+    queryKey: ["track"],
+    cacheTime: 3600,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    queryFn: async () => {
+      const profile = await useGet<CurrentProfile>("https://api.spotify.com/v1/me", { method: "GET" }, token);
+      const tracks = await useGet<SavedTracks>("https://api.spotify.com/v1/me/tracks?limit=50", { method: "GET" }, token);
+
+      return { profile, tracks };
+    }
   });
 
-  if (isLoading) return <LocalLoader />;
+  if (isLoading) return <LocalLoader />
 
-  const { images } = data as CurrentProfile;
+  const { images } = data?.profile as CurrentProfile;
 
   return (
     <GenericContext.Provider value={data}>

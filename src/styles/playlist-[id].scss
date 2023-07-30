@@ -7,3 +7,17 @@
     font-size: 4rem;
   }
 }
+
+.song-row:not(.song-row:has(.heart-solid)):hover .heart-btn {
+  display: block;
+}
+
+.song-row:hover {
+  .play-btn {
+    display: inline;
+  }
+
+  .number {
+    display: none;
+  }
+}
