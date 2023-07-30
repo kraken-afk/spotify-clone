@@ -9,7 +9,7 @@ import FooterSection from "~/components/layouts/FooterSection";
 import "~/styles/utils.scss";
 
 export default function Home(): ReactElement {
-  const profile = useContext(GenericContext) as CurrentProfile;
+  const { profile } = useContext(GenericContext) as InitialResource;
 
   return (
     <>
@@ -26,5 +26,3 @@ export default function Home(): ReactElement {
     </>
   );
 }
-
-// https://picsum.photos/200
