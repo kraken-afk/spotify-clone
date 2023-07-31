@@ -11,6 +11,7 @@ import Playlist from "~/pages/Playlist-[id]";
 import Search from "~/pages/Search";
 import Shell from "~/components/Shell";
 import Home from "~/pages/Home";
+import Album from "~/pages/Album-[id]";
 
 interface HistoryUrl {
   path: string;
@@ -32,11 +33,6 @@ const AppRoute = forwardRef<HTMLElement, unknown>((_props, ref): ReactElement =>
   const location = useLocation();
 
   useEffect(() => {
-    if (!isInit && location.pathname !== "/") {
-      histories.push({ path: "/", unique: "default-first" });
-      isInit = true;
-      return;
-    }
     if (!isPopstateTrigerred && isInit) {
       // First load
 
@@ -83,6 +79,14 @@ const AppRoute = forwardRef<HTMLElement, unknown>((_props, ref): ReactElement =>
           element={
             <Shell>
               <Playlist />
+            </Shell>
+          }
+        />
+        <Route
+          path="/album/:id"
+          element={
+            <Shell>
+              <Album />
             </Shell>
           }
         />

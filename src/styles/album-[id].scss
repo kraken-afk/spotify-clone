@@ -1,0 +1,6 @@
+.parent-list {
+  display: grid;
+  grid-template-columns: 50px 1fr repeat(3, 50px);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}

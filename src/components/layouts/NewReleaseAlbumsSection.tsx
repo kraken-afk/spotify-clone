@@ -4,29 +4,32 @@ import useFetchSpotify from "~/hooks/useFetchSpotify";
 import CredentialContext from "~/context/CredentialContext";
 import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
 import Card from "~/components/ui/Card";
+import { Link } from "~/routes";
 
-export default function ShowSection(): ReactElement {
+export default function NewReleaseAlbumsSection(): ReactElement {
   const token = useContext(CredentialContext) as Credential;
   const containerRef = useRef<HTMLElement>(null);
-  const { data, isLoading } = useFetchSpotify<Shows>(
-    "https://api.spotify.com/v1/me/shows",
+  const { data, isLoading } = useFetchSpotify<Albums>(
+    "https://api.spotify.com/v1/browse/new-releases?limit=15",
     token,
     { method: "GET" }
   );
 
+  if (isLoading) return <h1>Loading..</h1>
+
   return (
     <Section ref={containerRef}>
-      <h2 className="sub-title">Your shows</h2>
+      <h2 className="sub-title">New Release</h2>
       <ResponsiveSwiper containerRef={containerRef} isLoading={isLoading}>
-        {data?.items.map((item) => {
+        {data?.albums.items.map((item) => {
           return (
-            <Card
-              type="show"
-              key={item.show.id}
-              title={item.show.name}
-              description={item.show.description}
-              coverImage={item.show.images.at(1)?.url as string}
-            />
+            <Link to={`album/${item.id}`} key={item.id}>
+              <Card
+                title={item.name}
+                description={item.artists[0].name}
+                coverImage={item.images.at(1)?.url as string}
+              />
+            </Link>
           );
         })}
       </ResponsiveSwiper>

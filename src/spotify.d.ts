@@ -74,6 +74,19 @@ interface Artist {
   uri: string;
 }
 
+interface ArtistDetail {
+  external_urls: ExternalUrls;
+  followers: {href?: string, total: number};
+  genres: Genres;
+  href: string;
+  id: string;
+  images: CoverImg[];
+  name: string;
+  popularity: number
+  type: string;
+  uri: string;
+}
+
 interface Album {
   album_type: string;
   artists: Artist[];
@@ -243,4 +256,68 @@ interface SavedTracks {
   offset: number;
   previous?: string;
   total: number;
+}
+
+interface Albums {
+  albums: {
+    href: string;
+    items: Album[];
+    limit: number;
+    next?: string;
+    offset: number;
+    previous?: string;
+    total: number;
+  };
+}
+
+interface Copyright {
+  text: string;
+  type: string;
+}
+
+interface SingleTrack {
+  artists: Artist[];
+  available_markets: Markets;
+  disc_number: 1;
+  duration_ms: number;
+  explicit: false;
+  external_urls: ExternalUrls;
+  href: string;
+  id: string;
+  is_local: false;
+  name: string;
+  preview_url?: string;
+  track_number: number;
+  type: string;
+  uri: string;
+}
+
+interface Single {
+  album_type: string;
+  artists: Artist[];
+  available_markets: Markets;
+  copyrights: Copyright[];
+  external_ids: { udc: string };
+  external_urls: ExternalUrls;
+  genres: Genres;
+  href: string;
+  id: string;
+  images: CoverImg[];
+  label: string;
+  name: string;
+  popularity: number;
+  release_date: string;
+  release_date_precision: string;
+  total_tracks: number;
+  tracks: {
+    href: string;
+    items: SingleTrack[];
+    limit: number;
+    next?: string;
+    offset: number;
+    previous?: string;
+    total: number;
+  };
+  type: string;
+  uri: string;
 }

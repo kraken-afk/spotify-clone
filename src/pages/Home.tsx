@@ -6,6 +6,7 @@ import ShowSection from "~/components/layouts/ShowsSection";
 import EpisodesSection from "~/components/layouts/EpisodesSection";
 import GenericContext from "~/context/GenericContext";
 import FooterSection from "~/components/layouts/FooterSection";
+import NewReleaseAlbumsSection from "~/components/layouts/NewReleaseAlbumsSection";
 import "~/styles/utils.scss";
 
 export default function Home(): ReactElement {
@@ -19,6 +20,7 @@ export default function Home(): ReactElement {
         </h2>
         <YourPlaylistsSection />
         <FeaturedPlaylistSection />
+        <NewReleaseAlbumsSection />
         <ShowSection />
         <EpisodesSection />
         <FooterSection />

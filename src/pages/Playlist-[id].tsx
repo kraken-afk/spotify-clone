@@ -126,7 +126,7 @@ export default function Playlist(): ReactElement {
           className="w-14 h-14 mr-10 cursor-pointer hover:scale-105 duration-0"
           svgSize={40}
         />
-        <div className="flex gap-2 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100">
+        <div className="flex gap-2 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100 py-4">
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>

@@ -17,7 +17,7 @@ export default function FeaturedPlaylistSection(): ReactElement {
 
   return (
     <Section ref={containerRef}>
-      <h2 className="sub-title mb-4">Your featured playlist</h2>
+      <h2 className="sub-title">Your featured playlist</h2>
       <ResponsiveSwiper isLoading={isLoading} containerRef={containerRef}>
         {data?.playlists.items.map((item) => (
           <Link key={item.id} to={`/playlist/${item.id}`}>

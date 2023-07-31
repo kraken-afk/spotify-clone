@@ -16,7 +16,7 @@ export default function EpisodesSection(): ReactElement {
 
   return (
     <Section ref={containerRef}>
-      <h2 className="sub-title mb-4">Your episodes</h2>
+      <h2 className="sub-title">Your episodes</h2>
       <ResponsiveSwiper containerRef={containerRef} isLoading={isLoading}>
         {data?.items.map((item) => (
           <Card

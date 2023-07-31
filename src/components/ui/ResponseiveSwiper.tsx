@@ -30,7 +30,7 @@ export default function ResponsiveSwiper({
     setSlidesCount(count / cardX);
   }, [isLoading]);
 
-  if (isLoading)
+  if (isLoading || !slidesCount)
     return (
       <div className="flex gap-4">
         <SkeletonCard /> <SkeletonCard /> <SkeletonCard /> <SkeletonCard />

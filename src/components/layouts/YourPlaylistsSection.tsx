@@ -28,8 +28,6 @@ export default function YourPlaylistsSection(): ReactElement {
       (item) => spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id === item.owner.id
     ) ?? [];
 
-  console.log(filteredPlaylist);
-
   if (filteredPlaylist.length > 9) filteredPlaylist.splice(9);
 
   if (isLoading)
@@ -43,7 +41,7 @@ export default function YourPlaylistsSection(): ReactElement {
 
   return (
     <Section ref={containerRef}>
-      <div className="badge-container">
+      <div className="badge-container mb-6">
         {filteredPlaylist.map((item) => {
           return (
             <Link to={`/playlist/${item.id}`} key={item.id}>
