@@ -24,6 +24,6 @@ const BadgeCard = forwardRef<HTMLDivElement, BadgeCardProps>((props, ref) => {
       </div>
     </div>
   );
-})
+});
 
-export default BadgeCard
+export default BadgeCard;

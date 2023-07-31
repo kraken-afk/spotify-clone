@@ -31,8 +31,15 @@ export default function Split({ children, refs }: SplitComponentProps): ReactEle
     }
 
     function mouseMoveHandler({ clientX }: MouseEvent) {
+      const sideCollection = document.querySelector(".collection") as HTMLElement;
       clientX = clientX < 65 ? 65 : clientX;
       clientX = clientX > 315 ? 315 : clientX;
+
+      if (clientX < 87 && !sideCollection.hasAttribute("style"))
+        sideCollection.style.height = "63px";
+      else if (clientX > 87 && sideCollection.hasAttribute("style"))
+        sideCollection.removeAttribute("style");
+
       const dx = clientX - x;
       let newLeftWidth =
         ((leftWidth + dx) * 100) /

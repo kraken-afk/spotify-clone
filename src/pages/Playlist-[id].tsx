@@ -15,6 +15,7 @@ import FooterSection from "~/components/layouts/FooterSection";
 import GenericContext from "~/context/GenericContext";
 import Heart from "~/components/icons/Heart";
 import Play from "~/components/icons/Play";
+import noicon from "~/assets/no-icon.png";
 import "~/styles/playlist-[id].scss";
 
 interface FetchResponse {
@@ -23,7 +24,7 @@ interface FetchResponse {
 }
 
 export default function Playlist(): ReactElement {
-  const theadRef = useRef<HTMLTableSectionElement>(null)
+  const theadRef = useRef<HTMLTableSectionElement>(null);
   const token = useContext(CredentialContext) as Credential;
   const { tracks } = useContext(GenericContext) as InitialResource;
   const { id } = useParams();
@@ -92,7 +93,7 @@ export default function Playlist(): ReactElement {
             <span className="flex items-center gap-1">
               <img
                 className="rounded-full"
-                src={owner?.images[0].url}
+                src={owner?.images.at(-1)?.url ?? noicon}
                 alt="profile"
                 width={28}
               />

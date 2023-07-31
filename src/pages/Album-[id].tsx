@@ -22,7 +22,7 @@ interface FetchResponse {
 }
 
 export default function Album(): ReactElement {
-  const token = useContext(CredentialContext) as Credential
+  const token = useContext(CredentialContext) as Credential;
   const theadRef = useRef<HTMLDivElement>(null);
   const { tracks } = useContext(GenericContext) as InitialResource;
   const { id } = useParams();
@@ -64,11 +64,11 @@ export default function Album(): ReactElement {
     return () => element.removeEventListener("scroll", theadScrollHandler);
   }, []);
 
-  if (isLoading) return <LocalLoader />
+  if (isLoading) return <LocalLoader />;
 
   const { single, artist } = data as FetchResponse;
 
-  const savedAlbums = tracks.items.filter(item => item.track.album.album_type === "album");
+  const savedAlbums = tracks.items.filter((item) => item.track.album.album_type === "album");
 
   console.log(savedAlbums);
 

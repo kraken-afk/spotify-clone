@@ -1,6 +1,6 @@
 import { useRef, type ReactElement } from "react";
 import Loader from "./components/popups/Loader";
-import SideBar from "./components/ui/SideBar";
+import SideBar from "./components/layouts/SideBar";
 import Split from "./components/Split";
 import useAuthorization from "./hooks/useAuthorization";
 import ErrorModal from "./components/popups/ErrorModal";

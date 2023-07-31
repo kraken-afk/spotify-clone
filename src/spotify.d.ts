@@ -76,13 +76,13 @@ interface Artist {
 
 interface ArtistDetail {
   external_urls: ExternalUrls;
-  followers: {href?: string, total: number};
+  followers: { href?: string; total: number };
   genres: Genres;
   href: string;
   id: string;
   images: CoverImg[];
   name: string;
-  popularity: number
+  popularity: number;
   type: string;
   uri: string;
 }

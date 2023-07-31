@@ -15,14 +15,22 @@ export default function Shell({ children }: PropsWithChildren): ReactElement {
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
-      const profile = await useGet<CurrentProfile>("https://api.spotify.com/v1/me", { method: "GET" }, token);
-      const tracks = await useGet<SavedTracks>("https://api.spotify.com/v1/me/tracks?limit=50", { method: "GET" }, token);
+      const profile = await useGet<CurrentProfile>(
+        "https://api.spotify.com/v1/me",
+        { method: "GET" },
+        token
+      );
+      const tracks = await useGet<SavedTracks>(
+        "https://api.spotify.com/v1/me/tracks?limit=50",
+        { method: "GET" },
+        token
+      );
 
       return { profile, tracks };
-    }
+    },
   });
 
-  if (isLoading) return <LocalLoader />
+  if (isLoading) return <LocalLoader />;
 
   const { images } = data?.profile as CurrentProfile;
 

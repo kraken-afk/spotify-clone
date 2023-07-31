@@ -1,11 +1,23 @@
-import { ReactElement, forwardRef, type MutableRefObject } from "react";
+import { ReactElement, forwardRef, type MutableRefObject, useContext } from "react";
 import { Link } from "~/routes";
 import logoFull from "~/images/logo-full.svg";
 import logo from "~/images/logo-mobile.svg";
+import useFetchSpotify from "~/hooks/useFetchSpotify";
+import CredentialContext from "~/context/CredentialContext";
+import SkeletoSideBarBadge from "~/components/skeletons/SkeletonSideBarBadge";
+import SideBarBadge from "./SideBarBadge";
+import "~/styles/sidebar.scss";
 
 const SideBar = forwardRef((_props, ref): ReactElement => {
+  const token = useContext(CredentialContext) as Credential;
+  const { data, isLoading } = useFetchSpotify<Playlists>(
+    "https://api.spotify.com/v1/me/playlists?limit=50",
+    token,
+    { method: "GET" }
+  );
+
   return (
-    <nav className="p-2 px-0" ref={ref as MutableRefObject<HTMLDivElement>}>
+    <nav className="p-2 px-0 navigation" ref={ref as MutableRefObject<HTMLDivElement>}>
       <picture className="block mb-2 py-[.7rem] px-[.3rem overflow-hidden">
         <source media="(min-width: 640px )" srcSet={logoFull} />
         <img src={logo} alt="Spotify logo" draggable="false" className="min-w-max" />
@@ -51,6 +63,47 @@ const SideBar = forwardRef((_props, ref): ReactElement => {
               <span>Search</span>
             </div>
           </Link>
+        </div>
+      </div>
+      <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-4 max-w-[300px] overflow-hidden mt-2 collection transition-all">
+        <span
+          aria-hidden="true"
+          className="flex items-center gap-4 font-bold text-essential-sub cursor-pointer hover:text-white hover:fill-white fill-essential-sub w-full mb-4 sub-title"
+        >
+          <svg
+            className="min-w-max"
+            role="img"
+            height="24"
+            width="24"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+          >
+            <path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
+          </svg>
+          <span className="whitespace-nowrap text-[1rem]">Your collection</span>
+        </span>
+        <div className="overflow-y-auto scrollable">
+          {isLoading ? (
+            <>
+              <SkeletoSideBarBadge />
+              <SkeletoSideBarBadge />
+              <SkeletoSideBarBadge />
+              <SkeletoSideBarBadge />
+            </>
+          ) : (
+            <>
+              {data?.items.map((item) => (
+                <Link key={item.id + "-sidebar"} to={`/${item.type}/${item.id}`}>
+                  <SideBarBadge
+                    img={item.images.at(-1)?.url as string}
+                    owner={item.owner.display_name}
+                    title={item.name}
+                    type="playlist"
+                  />
+                </Link>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </nav>

@@ -1,0 +1,50 @@
+.navigation {
+  display: grid;
+  grid-template-rows: 70px 120px 1fr;
+}
+
+.collection {
+  height: calc(100vh - 170px);
+  display: flex;
+  flex-direction: column;
+
+  .scrollable {
+    overflow-x: hidden;
+    max-height: 85%;
+
+    &::-webkit-scrollbar-track {
+      opacity: 0;
+    }
+  }
+}
+
+.badge-container-sidebar {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 14px;
+
+  &:hover {
+    picture {
+      opacity: 0.6;
+    }
+  }
+}
+
+.desc {
+  display: grid;
+  grid-template-columns: min-content 16px 1fr;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: transparent;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800 rounded-lg;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: transparent;
+  padding: 0;
+}
