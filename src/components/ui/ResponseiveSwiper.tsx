@@ -1,10 +1,10 @@
 import { useLayoutEffect, useState, type RefObject, PropsWithChildren } from "react";
 import { Scrollbar, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SkeletonCard from "~/components/skeletons/SkeletonCard";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "~/styles/utils.scss";
-import SkeletonCard from "../skeletons/SkeletonCard";
 
 interface ResponsiveSwiperProps {
   isLoading: boolean;
