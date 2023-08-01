@@ -22,7 +22,6 @@ export default function FeaturedPlaylistSection(): ReactElement {
         {data?.playlists.items.map((item) => (
           <Link key={item.id} to={`/playlist/${item.id}`}>
             <Card
-              key={item.id}
               coverImage={item.images[0].url}
               title={item.name}
               description={item.description}

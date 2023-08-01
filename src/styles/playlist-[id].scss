@@ -10,6 +10,10 @@
 
 .song-row:not(.song-row:has(.heart-solid)):hover .heart-btn {
   display: block;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .song-row:hover {

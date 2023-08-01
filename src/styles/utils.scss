@@ -7,6 +7,15 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
+
+  @media screen and (max-width: 768px) {
+    gap: 0.5rem;
+    a {
+      width: min-content;
+    }
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-rows: none;
+  }
 }
 
 // limited by 895px

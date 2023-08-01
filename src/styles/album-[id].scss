@@ -4,3 +4,10 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
+
+@media screen and (max-width: 768px) {
+  .album-detail-info {
+    display: grid !important;
+    grid-template-rows: 1fr 1fr;
+  }
+}

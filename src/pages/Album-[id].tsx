@@ -14,6 +14,9 @@ import CredentialContext from "~/context/CredentialContext";
 import GenericContext from "~/context/GenericContext";
 import useGet from "~/hooks/useGet";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
+import ExplicitContent from "~/components/icons/ExplicitContent";
+import isDeviceWidthLT from "../libs/isDeviceWidthLT";
+import { screen } from "../global/constants";
 import "~/styles/album-[id].scss";
 
 interface FetchResponse {
@@ -70,18 +73,24 @@ export default function Album(): ReactElement {
 
   const savedAlbums = tracks.items.filter((item) => item.track.album.album_type === "album");
 
-  console.log(savedAlbums);
+  console.log(single);
 
   return (
     <>
-      <div className="py-4 mx-6 pb-16 flex items-end border-b-neutral-700 border-b-[1px] border-solid">
-        <picture className="block w-56 mr-8">
-          <img className="block shadow-2xl" src={single?.images[0].url} alt="artist profile" />
+      <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">
+        <picture className="block mb-4 sm:mx-auto lg:m-0 lg:mr-8 lg:items-end">
+          <img
+            className="block shadow-2xl min-w-[200px] w-[200px]"
+            src={single?.images[0].url}
+            alt="artist profile"
+          />
         </picture>
-        <div className="flex flex-col">
-          <span className="font-bold translate-y-1 capitalize">{single?.type}</span>
+        <div className="flex flex-col lg:justify-end">
+          {!isDeviceWidthLT(screen.LG) && (
+            <span className="font-bold translate-y-1 capitalize">{single?.type}</span>
+          )}
           <h1 className="playlist-title">{single?.name}</h1>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center lg:gap-1 gap-3 album-detail-info">
             <span className="flex items-center gap-1">
               <img
                 className="rounded-full"
@@ -92,38 +101,33 @@ export default function Album(): ReactElement {
               <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
                 {artist.name}
               </span>
-              <span className="mx-[1px]">&#x2022;</span>
             </span>
-            <span className="flex items-center gap-1">
-              {single.release_date.split("-")[0]}
-              <span className="mx-[1px]">&#x2022;</span>
+            <span className="lg:flex lg:items-center gap-1">
+              {isDeviceWidthLT(screen.MD) && (
+                <span className="translate-y-1 capitalize">{single?.type}</span>
+              )}
+              <span className="lg:mx-[1px] mx-2">&#x2022;</span>
+              <span>{single.release_date.split("-")[0]}</span>
             </span>
-            <span className="flex items-center gap-1">
-              {single.tracks.total} <Music size={16} className="fill-essential-sub" />{" "}
-              <span className="mx-[1px]">&#x2022;</span>
-            </span>
-            <span>
-              {single?.tracks
-                ? msToTime(single?.tracks.items.reduce((acc, v) => v.duration_ms + acc, 0))
-                : ""}
-            </span>
-            <TimeFive size={16} className="fill-essential-sub" />{" "}
           </div>
         </div>
       </div>
-      <div className="p-6 flex items-center gap-6">
+      <div className="lg:p-6 p-4 flex items-center gap-6">
         <PlayButton
-          className="w-14 h-14 cursor-pointer hover:scale-105 duration-0"
-          svgSize={40}
+          className="lg:w-14 w-12 lg:h-14 h-12 cursor-pointer hover:scale-105 duration-0"
+          svgSize={isDeviceWidthLT(screen.MD) ? 30 : 40}
         />
         <div className="cursor-pointer">
           {savedAlbums.find((album) => album.track.album.id === single.id) ? (
-            <HeartSolid size={40} className="fill-green" />
+            <HeartSolid size={isDeviceWidthLT(screen.MD) ? 30 : 40} className="fill-green" />
           ) : (
-            <Heart size={40} className="fill-essential-sub" />
+            <Heart
+              size={isDeviceWidthLT(screen.MD) ? 30 : 40}
+              className="fill-essential-sub"
+            />
           )}
         </div>
-        <div className="flex gap-2 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100 py-4">
+        <div className="flex lg:gap-2 gap-1 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100 py-4">
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
@@ -161,7 +165,7 @@ export default function Album(): ReactElement {
                       {item.name}
                     </span>
                     <span className="text-essential-sub hover:underline underline-offset-2">
-                      {item.artists[0].name}
+                      {item.explicit ? <ExplicitContent /> : ""} {item.artists[0].name}
                     </span>
                   </div>
                 </div>

@@ -3,10 +3,18 @@
   grid-template-rows: 70px 120px 1fr;
 }
 
+.collection-active {
+  height: calc(100vh - 170px);
+}
+
 .collection {
   height: calc(100vh - 170px);
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    height: 63px;
+  }
 
   .scrollable {
     overflow-x: hidden;

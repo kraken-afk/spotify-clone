@@ -1,7 +1,9 @@
 import { useLayoutEffect, useState, type RefObject, PropsWithChildren } from "react";
 import { Scrollbar, Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { screen } from "~/global/constants";
 import SkeletonCard from "~/components/skeletons/SkeletonCard";
+import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "~/styles/utils.scss";
@@ -22,7 +24,7 @@ export default function ResponsiveSwiper({
     if (slidesCount || isLoading) return;
 
     const containerX = containerRef.current?.clientWidth as number;
-    const cardX = 192;
+    const cardX = isDeviceWidthLT(screen.MD) ? 120 : 192;
     let count = 0;
 
     while (count + cardX <= containerX) count += cardX;

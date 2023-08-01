@@ -6,11 +6,13 @@ import useAuthorization from "./hooks/useAuthorization";
 import ErrorModal from "./components/popups/ErrorModal";
 import CredentialContext from "./context/CredentialContext";
 import AppRoute from "./routes";
+import { useAnimate } from "framer-motion";
 import "./styles/main.scss";
 
 export default function App(): ReactElement {
   const navBarRef = useRef<HTMLElement>(null);
   const mainRef = useRef<HTMLElement>(null);
+  const [scope, animate] = useAnimate<HTMLDivElement>();
   const refs = { prevRef: navBarRef, nextRef: mainRef };
   const { data: token, isLoading, error } = useAuthorization();
 
@@ -20,9 +22,9 @@ export default function App(): ReactElement {
 
   return (
     <CredentialContext.Provider value={token}>
-      <div className="app">
+      <div className="app" ref={scope}>
         <Split refs={refs}>
-          <SideBar ref={navBarRef} />
+          <SideBar ref={navBarRef} animate={animate} />
           <AppRoute ref={mainRef} />
         </Split>
       </div>

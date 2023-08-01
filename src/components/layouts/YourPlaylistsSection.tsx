@@ -7,6 +7,7 @@ import useFetchSpotify from "~/hooks/useFetchSpotify";
 import Section from "~/components/ui/Section";
 import BadgeCard from "~/components/ui/BadgeCard";
 import SkeletonBadge from "~/components/skeletons/SkeletonBadge";
+import isDeviceWidthLT from "../../libs/isDeviceWidthLT";
 
 export default function YourPlaylistsSection(): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
@@ -28,7 +29,7 @@ export default function YourPlaylistsSection(): ReactElement {
       (item) => spotfyManager.get<CurrentProfile>(SpotifyManagerKey.USER).id === item.owner.id
     ) ?? [];
 
-  if (filteredPlaylist.length > 9) filteredPlaylist.splice(9);
+  if (filteredPlaylist.length > (isDeviceWidthLT(768) ? 14 : 9)) filteredPlaylist.splice(9);
 
   if (isLoading)
     return (

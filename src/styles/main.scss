@@ -8,9 +8,17 @@
   @apply font-sans bg-[#000] text-white;
 }
 
+a[href] {
+  width: min-content !important;
+}
+
 .app {
+  max-width: 1400px;
+  margin-inline: auto;
   $nav-width: 21%;
   $gutter-width: 0.6rem;
+
+  @apply transition-all;
 
   padding: 10px;
   padding-bottom: 0;
@@ -31,9 +39,13 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
     height: 100%;
+
+    @media screen and (max-width: 768px) {
+      width: calc(100vw - 50px);
+    }
   }
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 768px) {
     & {
       $nav-width: 50px;
       grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);

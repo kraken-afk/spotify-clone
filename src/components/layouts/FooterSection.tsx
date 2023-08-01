@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 
 export default function FooterSection(): ReactElement {
   return (
-    <footer className="mt-16 min-h-[7rem] border-t-neutral-700 border-t-[1px] border-solid flex justify-center items-center flex-col">
+    <footer className="my-16 min-h-[7rem] border-t-neutral-700 border-t-[1px] border-solid flex justify-center items-center flex-col">
       <p>
         Built by{" "}
         <a

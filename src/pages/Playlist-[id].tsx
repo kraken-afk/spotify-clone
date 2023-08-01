@@ -16,6 +16,9 @@ import GenericContext from "~/context/GenericContext";
 import Heart from "~/components/icons/Heart";
 import Play from "~/components/icons/Play";
 import noicon from "~/assets/no-icon.png";
+import ExplicitContent from "~/components/icons/ExplicitContent";
+import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
+import { screen } from "~/global/constants";
 import "~/styles/playlist-[id].scss";
 
 interface FetchResponse {
@@ -72,16 +75,18 @@ export default function Playlist(): ReactElement {
 
   return (
     <>
-      <div className="py-4 mx-6 pb-16 flex items-end border-b-neutral-700 border-b-[1px] border-solid">
-        <picture className="block w-56 mr-8">
+      <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">
+        <picture className="block mb-4 sm:mx-auto lg:m-0 lg:mr-8 lg:items-end">
           <img
-            className="block shadow-2xl"
+            className="block shadow-2xl min-w-[200px] w-[200px]"
             src={playlist?.images[0].url}
             alt="Playlist Cover"
           />
         </picture>
-        <div className="flex flex-col">
-          <span className="font-bold translate-y-1 capitalize">{playlist?.type}</span>
+        <div className="flex flex-col lg:justify-end">
+          {!isDeviceWidthLT(screen.LG) && (
+            <span className="font-bold translate-y-1 capitalize">{playlist?.type}</span>
+          )}
           <h1 className="playlist-title">{playlist?.name}</h1>
           <p
             className="my-1 mb-2 text-essential-sub font-semibold"
@@ -89,8 +94,8 @@ export default function Playlist(): ReactElement {
               __html: playlist?.description ? playlist.description : "",
             }}
           ></p>
-          <div className="flex items-center gap-1">
-            <span className="flex items-center gap-1">
+          <div className="lg:flex lg:items-center lg:gap-1">
+            <span className="flex items-center gap-1 mb-4 lg:mb-0">
               <img
                 className="rounded-full"
                 src={owner?.images.at(-1)?.url ?? noicon}
@@ -100,34 +105,36 @@ export default function Playlist(): ReactElement {
               <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
                 {playlist?.owner.display_name}
               </span>
-              <span className="mx-[1px]">&#x2022;</span>
+              <span className="hidden lg:inline lg:mx-1">&#x2022;</span>
             </span>
-            <span className="flex items-center gap-1">
-              {playlist?.followers.total}{" "}
-              <HeartSolid size={16} className="fill-essential-sub" />{" "}
-              <span className="mx-[1px]">&#x2022;</span>
-            </span>
-            <span className="flex items-center gap-1">
-              {playlist?.tracks.total} <Music size={16} className="fill-essential-sub" />{" "}
-              <span className="mx-[1px]">&#x2022;</span>
-            </span>
-            <span>
-              {playlist?.tracks
-                ? msToTime(
-                    playlist?.tracks.items.reduce((acc, v) => v.track.duration_ms + acc, 0)
-                  )
-                : ""}
-            </span>
-            <TimeFive size={16} className="fill-essential-sub" />{" "}
+            <div className="flex gap-3 items-center lg:gap-0">
+              <span className="flex items-center gap-1">
+                {playlist?.followers.total}{" "}
+                <HeartSolid size={16} className="fill-essential-sub" />{" "}
+                <span className="hidden lg:inline lg:mx-1">&#x2022;</span>
+              </span>
+              <span className="flex items-center gap-1">
+                {playlist?.tracks.total} <Music size={16} className="fill-essential-sub" />{" "}
+                <span className="hidden lg:inline lg:mx-1">&#x2022;</span>
+              </span>
+              <span>
+                {playlist?.tracks
+                  ? msToTime(
+                      playlist?.tracks.items.reduce((acc, v) => v.track.duration_ms + acc, 0)
+                    )
+                  : ""}{" "}
+                <TimeFive size={16} className="fill-essential-sub inline" />
+              </span>
+            </div>
           </div>
         </div>
       </div>
-      <div className="p-6 flex">
+      <div className="lg:p-6 p-4 flex">
         <PlayButton
-          className="w-14 h-14 mr-10 cursor-pointer hover:scale-105 duration-0"
+          className="lg:w-14 lg:h-14 w-12 h-12 lg:mr-10 mr-6 cursor-pointer hover:scale-105 duration-0"
           svgSize={40}
         />
-        <div className="flex gap-2 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100 py-4">
+        <div className="flex lg:gap-2 gap-1 items-center cursor-pointer opacity-70 transition-all duration-0 hover:opacity-100 py-4">
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
           <div className="w-1 h-1 bg-essential-sub rounded-full"></div>
@@ -141,8 +148,12 @@ export default function Playlist(): ReactElement {
           <tr className="items-center">
             <th className="font-normal text-right py-2 px-4">#</th>
             <th className="font-normal text-left py-2">Title</th>
-            <th className="font-normal text-left py-2">Album</th>
-            <th className="font-normal text-left py-2">Added at</th>
+            {!isDeviceWidthLT(screen.LG) && (
+              <th className="font-normal text-left py-2">Album</th>
+            )}
+            {!isDeviceWidthLT(screen.LG) && (
+              <th className="font-normal text-left py-2">Added at</th>
+            )}
             <th></th>
             <th className="text-center">
               <Time size={16} className="fill-neutral-500" />
@@ -153,9 +164,14 @@ export default function Playlist(): ReactElement {
         <tbody className="px-4">
           {playlist.tracks.items.map((item, index) => {
             return (
-              <tr key={item.track.id} className="cursor-pointer hover:bg-main-black song-row">
+              <tr
+                key={item.track.id + crypto.randomUUID()}
+                className="cursor-pointer hover:bg-main-black song-row"
+              >
                 <td className="text-sm py-4 px-4 text-essential-sub text-right relative">
-                  <span className="number">{index + 1}</span>
+                  <span className="number absolute right-1/3 top-1/2 translate-y-[-50%]">
+                    {index + 1}
+                  </span>
                   <span className="play-btn hidden absolute right-2 top-1/2 translate-y-[-50%]">
                     <Play size={24} className="fill-essential-sub inline" />
                   </span>
@@ -175,15 +191,20 @@ export default function Playlist(): ReactElement {
                         {item.track.name}
                       </span>
                       <span className="text-essential-sub hover:underline underline-offset-2">
+                        {item.track.explicit ? <ExplicitContent /> : ""}{" "}
                         {item.track.artists[0].name}
                       </span>
                     </div>
                   </div>
                 </td>
-                <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
-                  {item.track.album.name}
-                </td>
-                <td className="text-sm py-4">{relativeDateOffset(item.added_at)}</td>
+                {!isDeviceWidthLT(screen.LG) && (
+                  <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
+                    {item.track.album.name}
+                  </td>
+                )}
+                {!isDeviceWidthLT(screen.LG) && (
+                  <td className="text-sm py-4">{relativeDateOffset(item.added_at)}</td>
+                )}
                 <td>
                   <div className="p-4 relative flex items-center justify-center">
                     {tracks.items.find((savedItem) => {
@@ -213,7 +234,7 @@ export default function Playlist(): ReactElement {
                 </td>
                 <td>
                   <div
-                    className="flex gap-1 items-center cursor-pointer opacity-30 transition-all duration-0 hover:opacity-100 p-4"
+                    className="flex gap-1 items-center cursor-pointer opacity-30 transition-all duration-0 hover:opacity-100 p-4 lg:flex-row flex-col"
                     onClick={() => alert("menu")}
                   >
                     <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
