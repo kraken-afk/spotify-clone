@@ -3,10 +3,8 @@ import { useContext, useEffect, useRef, type ReactElement } from "react";
 import { useParams } from "react-router-dom";
 import Heart from "~/components/icons/Heart";
 import HeartSolid from "~/components/icons/HeartSolid";
-import Music from "~/components/icons/Music";
 import Play from "~/components/icons/Play";
 import Time from "~/components/icons/Time.";
-import TimeFive from "~/components/icons/TimeFive";
 import FooterSection from "~/components/layouts/FooterSection";
 import LocalLoader from "~/components/popups/LocalLoader";
 import PlayButton from "~/components/ui/PlayButton";
@@ -15,8 +13,8 @@ import GenericContext from "~/context/GenericContext";
 import useGet from "~/hooks/useGet";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
 import ExplicitContent from "~/components/icons/ExplicitContent";
-import isDeviceWidthLT from "../libs/isDeviceWidthLT";
-import { screen } from "../global/constants";
+import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
+import { screen } from "~/global/constants";
 import "~/styles/album-[id].scss";
 
 interface FetchResponse {
