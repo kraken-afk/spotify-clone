@@ -15,7 +15,7 @@ export default function SideBarBadge(props: SideBarBadgeProps): ReactElement {
       </picture>
       <div>
         <span className="font-semibold truncate hover:underline">{props.title}</span>
-        <div className="text-essential-sub text-sm desc">
+        <div className="text-essential-sub text-sm desc flex">
           <span className="truncate">{props.type}</span>
           <span className="px-1">&#x2022;</span>
           <span className="truncate hover:underline">{props.owner}</span>

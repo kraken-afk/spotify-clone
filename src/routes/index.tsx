@@ -12,6 +12,10 @@ import Search from "~/pages/Search";
 import Shell from "~/components/Shell";
 import Home from "~/pages/Home";
 import Album from "~/pages/Album-[id]";
+import isDeviceWidthLT from "../libs/isDeviceWidthLT";
+import { screen } from "../global/constants";
+import collectionButtonHandler from "../handlers/collectionButtonHandler";
+import { animate } from "framer-motion";
 
 interface HistoryUrl {
   path: string;
@@ -103,11 +107,16 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref): React
     replace: props?.replace ?? false,
   });
   const linkHandler: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    const app = document.querySelector(".app") as HTMLElement;
+
     event.preventDefault();
     if (location.pathname === props.to) return;
     if (isNavigationMode && index !== histories.length - 1) {
       histories.splice(index + 1);
     }
+    if (+(app.dataset?.active as string) && isDeviceWidthLT(screen.MD))
+      collectionButtonHandler(animate)();
+
     clickHandler(event);
   };
 

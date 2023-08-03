@@ -1,6 +1,6 @@
 import { animate as _animate } from "framer-motion";
-import isDeviceWidthLT from "../libs/isDeviceWidthLT";
-import { screen } from "../global/constants";
+import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
+import { screen } from "~/global/constants";
 
 let isActive = !isDeviceWidthLT(screen.MD);
 let isMidScreen = isDeviceWidthLT(screen.MD);
@@ -18,7 +18,8 @@ export default function collectionButtonHandler(animate: typeof _animate): () =>
       collection,
       { height: isActive ? "63px" : "calc(100vh - 170px)" },
       { type: "decay" }
-    ).play();
+    );
     isActive = !isActive;
+    app.dataset.active = (+isActive).toString()
   };
 }
