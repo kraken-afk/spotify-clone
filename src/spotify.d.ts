@@ -322,7 +322,6 @@ interface Single {
   uri: string;
 }
 
-
 interface TopTrack {
   tracks: Array<{
     album: Album;
@@ -345,3 +344,28 @@ interface TopTrack {
   }>;
 }
 
+interface ArtistAlbums {
+  href: string;
+  items: {
+    album_group: string;
+    album_type: string;
+    artists: Artist[];
+    available_markets: Markets;
+    external_urls: ExternalUrls;
+    spotify: string;
+    href: string;
+    id: string;
+    images: CoverImg[];
+    name: string;
+    release_date: string;
+    release_date_precision: string;
+    total_tracks: number;
+    type: string;
+    uri: string;
+  }[];
+  limit: number;
+  next?: string;
+  offset: number;
+  previous?: string;
+  total: number;
+}

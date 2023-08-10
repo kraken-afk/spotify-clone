@@ -87,19 +87,21 @@ export default function Album(): ReactElement {
           )}
           <h1 className="playlist-title">{single?.name}</h1>
           <div className="flex items-center lg:gap-1 gap-3 album-detail-info">
-            <span className="flex items-center gap-1">
+            <div className="flex items-center gap-3">
               <img
                 className="rounded-full"
                 src={artist.images.at(-1)?.url as string}
                 alt="profile"
                 width={28}
               />
-              <Link to={`/artist/${artist.id}`}>
+              <div>
+                <Link to={`/artist/${artist.id}`}>
                 <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
                   {artist.name}
                 </span>
               </Link>
-            </span>
+              </div>
+            </div>
             <span className="lg:flex lg:items-center gap-1">
               {isDeviceWidthLT(screen.MD) && (
                 <span className="translate-y-1 capitalize">{single?.type}</span>

@@ -9,7 +9,8 @@ import Play from "~/components/icons/Play";
 import GenericContext from "~/context/GenericContext";
 import HeartSolid from "../components/icons/HeartSolid";
 import Heart from "../components/icons/Heart";
-import msToTime, { TimeConverterEnum } from "../libs/msToTime";
+import ArtistAlbumsSection from "~/components/layouts/ArtistAlbumsSection";
+import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
 import "~/styles/artist-[id].scss";
 
 interface FetchResponse {
@@ -87,9 +88,9 @@ export default function Artist(): ReactElement {
       </div>
       <section className="p-4">
         <h2 className="text-[2rem] font-bold">Popular</h2>
-
         <ToptrackList topTracks={topTracks} savedTracks={savedTracks} />
       </section>
+      <ArtistAlbumsSection id={artist.id} artist={artist.name} />
     </>
   );
 }
