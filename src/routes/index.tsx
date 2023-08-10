@@ -7,15 +7,16 @@ import {
   useLinkClickHandler,
   useLocation,
 } from "react-router-dom";
+import { screen } from "~/global/constants";
+import { animate } from "framer-motion";
 import Playlist from "~/pages/Playlist-[id]";
 import Search from "~/pages/Search";
 import Shell from "~/components/Shell";
 import Home from "~/pages/Home";
 import Album from "~/pages/Album-[id]";
-import isDeviceWidthLT from "../libs/isDeviceWidthLT";
-import { screen } from "../global/constants";
-import collectionButtonHandler from "../handlers/collectionButtonHandler";
-import { animate } from "framer-motion";
+import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
+import collectionButtonHandler from "~/handlers/collectionButtonHandler";
+import Artist from "~/pages/Artists-[id]";
 
 interface HistoryUrl {
   path: string;
@@ -91,6 +92,14 @@ const AppRoute = forwardRef<HTMLElement, unknown>((_props, ref): ReactElement =>
           element={
             <Shell>
               <Album />
+            </Shell>
+          }
+        />
+        <Route
+          path="/artist/:id"
+          element={
+            <Shell>
+              <Artist />
             </Shell>
           }
         />

@@ -16,6 +16,7 @@ import ExplicitContent from "~/components/icons/ExplicitContent";
 import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
 import { screen } from "~/global/constants";
 import "~/styles/album-[id].scss";
+import { Link } from "../routes";
 
 interface FetchResponse {
   single: Single;
@@ -68,10 +69,7 @@ export default function Album(): ReactElement {
   if (isLoading) return <LocalLoader />;
 
   const { single, artist } = data as FetchResponse;
-
   const savedAlbums = tracks.items.filter((item) => item.track.album.album_type === "album");
-
-  console.log(single);
 
   return (
     <>
@@ -96,9 +94,11 @@ export default function Album(): ReactElement {
                 alt="profile"
                 width={28}
               />
-              <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
-                {artist.name}
-              </span>
+              <Link to={`/artist/${artist.id}`}>
+                <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
+                  {artist.name}
+                </span>
+              </Link>
             </span>
             <span className="lg:flex lg:items-center gap-1">
               {isDeviceWidthLT(screen.MD) && (
@@ -162,8 +162,18 @@ export default function Album(): ReactElement {
                     <span className="truncate max-w-[250px] hover:underline underline-offset-2">
                       {item.name}
                     </span>
-                    <span className="text-essential-sub hover:underline underline-offset-2">
-                      {item.explicit ? <ExplicitContent /> : ""} {item.artists[0].name}
+                    <span className="text-essential-sub">
+                      {item.explicit ? <ExplicitContent /> : ""}
+                      {item.artists.map((artist, index) => (
+                        <Link
+                          key={artist.id}
+                          to={`/artist/${artist.id}`}
+                          className="first-of-type:ml-1 hover:underline underline-offset-2"
+                        >
+                          {artist.name}
+                          {index === item.artists.length - 1 ? "" : ", "}
+                        </Link>
+                      ))}
                     </span>
                   </div>
                 </div>

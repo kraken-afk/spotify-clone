@@ -1,5 +1,5 @@
 import { useContext, type ReactElement, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import CredentialContext from "~/context/CredentialContext";
 import LocalLoader from "~/components/popups/LocalLoader";
@@ -73,12 +73,14 @@ export default function Playlist(): ReactElement {
 
   const { playlist, owner } = data as FetchResponse;
 
+  console.log(playlist.tracks);
+
   return (
     <>
       <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">
         <picture className="block mb-4 sm:mx-auto lg:m-0 lg:mr-8 lg:items-end">
           <img
-            className="block shadow-2xl min-w-[200px] w-[200px]"
+            className="block shadow-2xl min-w-[200px] w-[200px] min-h-[200px] h-[200px] object-center"
             src={playlist?.images[0].url}
             alt="Playlist Cover"
           />
@@ -89,7 +91,7 @@ export default function Playlist(): ReactElement {
           )}
           <h1 className="playlist-title">{playlist?.name}</h1>
           <p
-            className="my-1 mb-2 text-essential-sub font-semibold"
+            className="my-1 mb-4 text-essential-sub font-semibold"
             dangerouslySetInnerHTML={{
               __html: playlist?.description ? playlist.description : "",
             }}
@@ -190,9 +192,18 @@ export default function Playlist(): ReactElement {
                       <span className="truncate max-w-[250px] hover:underline underline-offset-2">
                         {item.track.name}
                       </span>
-                      <span className="text-essential-sub hover:underline underline-offset-2">
-                        {item.track.explicit ? <ExplicitContent /> : ""}{" "}
-                        {item.track.artists[0].name}
+                      <span className="text-essential-sub">
+                        {item.track.explicit ? <ExplicitContent /> : ""}
+                        {item.track.artists.map((artist, index) => (
+                          <Link
+                            key={artist.id}
+                            to={`/artist/${artist.id}`}
+                            className="first-of-type:ml-1 hover:underline underline-offset-2"
+                          >
+                            {artist.name}
+                            {index === item.track.artists.length - 1 ? "" : ", "}
+                          </Link>
+                        ))}
                       </span>
                     </div>
                   </div>

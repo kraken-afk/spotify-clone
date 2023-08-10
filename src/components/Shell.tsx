@@ -1,10 +1,11 @@
 import { PropsWithChildren, useContext, type ReactElement } from "react";
+import { useQuery } from "@tanstack/react-query";
 import NavBar from "./ui/NavBar";
 import CredentialContext from "~/context/CredentialContext";
 import LocalLoader from "./popups/LocalLoader";
 import GenericContext from "~/context/GenericContext";
-import { useQuery } from "@tanstack/react-query";
-import useGet from "../hooks/useGet";
+import useGet from "~/hooks/useGet";
+import no_icon from "~/assets/no-icon.png";
 
 export default function Shell({ children }: PropsWithChildren): ReactElement {
   const token = useContext(CredentialContext) as Credential;
@@ -36,7 +37,7 @@ export default function Shell({ children }: PropsWithChildren): ReactElement {
 
   return (
     <GenericContext.Provider value={data}>
-      <NavBar profile={images[0].url} />
+      <NavBar profile={images[0]?.url ?? no_icon} />
       {children}
     </GenericContext.Provider>
   );
