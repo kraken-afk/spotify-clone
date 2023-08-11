@@ -73,8 +73,6 @@ export default function Playlist(): ReactElement {
 
   const { playlist, owner } = data as FetchResponse;
 
-  console.log(playlist.tracks);
-
   return (
     <>
       <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">

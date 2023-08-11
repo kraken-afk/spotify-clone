@@ -11,7 +11,6 @@ export default function collectionButtonHandler(animate: typeof _animate): () =>
     const collection = document.querySelector(".collection") as HTMLElement;
     const main = document.querySelector("main") as HTMLElement;
 
-    console.log("click");
     if (isMidScreen) animate(main, { left: isActive ? 0 : "1vw" });
     animate(app, { gridTemplateColumns: `${isActive ? "50px" : "296px"} .4rem 1fr` });
     animate(
@@ -20,6 +19,6 @@ export default function collectionButtonHandler(animate: typeof _animate): () =>
       { type: "decay" }
     );
     isActive = !isActive;
-    app.dataset.active = (+isActive).toString()
+    app.dataset.active = (+isActive).toString();
   };
 }

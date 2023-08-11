@@ -11,6 +11,8 @@ import HeartSolid from "../components/icons/HeartSolid";
 import Heart from "../components/icons/Heart";
 import ArtistAlbumsSection from "~/components/layouts/ArtistAlbumsSection";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
+import SimiliarArtistsSection from "~/components/layouts/SimiliarArtistsSection";
+import FooterSection from "~/components/layouts/FooterSection";
 import "~/styles/artist-[id].scss";
 
 interface FetchResponse {
@@ -18,14 +20,23 @@ interface FetchResponse {
   topTracks: TopTrack;
 }
 
+interface ToptrackListProps {
+  topTracks: TopTrack;
+  savedTracks: Array<{
+    added_at: string;
+    track: Track;
+  }>;
+}
+
 export default function Artist(): ReactElement {
   const token = useContext(CredentialContext) as Credential;
   const { tracks } = useContext(GenericContext) as InitialResource;
   const { id } = useParams();
+  console.log(id);
   const { data, isLoading } = useQuery<FetchResponse>({
-    queryKey: ["artist"],
+    queryKey: ["artist", id],
     cacheTime: 3600,
-    refetchOnMount: false,
+    refetchOnMount: true,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
@@ -48,6 +59,7 @@ export default function Artist(): ReactElement {
 
   const { artist, topTracks } = data as FetchResponse;
   const savedTracks = tracks.items.filter((item) => item.track.album.album_type === "album");
+  console.log(artist.name);
 
   return (
     <>
@@ -86,21 +98,29 @@ export default function Artist(): ReactElement {
           </div>
         </div>
       </div>
-      <section className="p-4">
-        <h2 className="text-[2rem] font-bold">Popular</h2>
-        <ToptrackList topTracks={topTracks} savedTracks={savedTracks} />
-      </section>
+      {!!topTracks.tracks.length && (
+        <section className="p-4">
+          <h2 className="text-[2rem] font-bold">Popular</h2>
+          <ToptrackList topTracks={topTracks} savedTracks={savedTracks} />
+        </section>
+      )}
+
       <ArtistAlbumsSection id={artist.id} artist={artist.name} />
+
+      <SimiliarArtistsSection id={artist.id} />
+
+      <div className="px-4 mx-auto flex justify-center">
+        <picture className="block w-full max-w-[300px] rounded-2xl my-8 overflow-hidden relative">
+          <img src={artist.images[0].url} width={"100%"} />
+          <span className="block text-2xl font-bold absolute bottom-2 right-2 shadow-2xl">
+            {artist.name}
+          </span>
+        </picture>
+      </div>
+
+      <FooterSection />
     </>
   );
-}
-
-interface ToptrackListProps {
-  topTracks: TopTrack;
-  savedTracks: {
-    added_at: string;
-    track: Track;
-  }[];
 }
 
 function ToptrackList({ topTracks, savedTracks }: ToptrackListProps): ReactElement {
@@ -167,19 +187,19 @@ function ToptrackList({ topTracks, savedTracks }: ToptrackListProps): ReactEleme
                 <Heart size={20} className="fill-essential-sub" />
               </button>
             </div>
-          <div className="text-sm py-4">
-            {msToTime(item.duration_ms, TimeConverterEnum.DURATION)}
-          </div>
-          <div>
-            <div
-              className="flex gap-1 items-center cursor-pointer opacity-30 transition-all duration-0 hover:opacity-100 p-4 lg:flex-row flex-col"
-              onClick={() => alert("menu")}
-            >
-              <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
-              <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
-              <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+            <div className="text-sm py-4">
+              {msToTime(item.duration_ms, TimeConverterEnum.DURATION)}
             </div>
-          </div>
+            <div>
+              <div
+                className="flex gap-1 items-center cursor-pointer opacity-30 transition-all duration-0 hover:opacity-100 p-4 lg:flex-row flex-col"
+                onClick={() => alert("menu")}
+              >
+                <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+                <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+                <div className="w-[2px] h-[2px] bg-essential-sub rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
       ))}

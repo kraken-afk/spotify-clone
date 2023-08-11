@@ -46,10 +46,10 @@ a[href] {
   }
 
   @media screen and (max-width: 1005px) {
-  & {
+    & {
       $nav-width: 50px;
       grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
-      }
+    }
   }
 
   @media screen and (max-width: 768px) {

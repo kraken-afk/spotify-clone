@@ -96,10 +96,10 @@ export default function Album(): ReactElement {
               />
               <div>
                 <Link to={`/artist/${artist.id}`}>
-                <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
-                  {artist.name}
-                </span>
-              </Link>
+                  <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
+                    {artist.name}
+                  </span>
+                </Link>
               </div>
             </div>
             <span className="lg:flex lg:items-center gap-1">
