@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, type ReactElement } from "react";
 import { useParams } from "react-router-dom";
+import { screen } from "~/global/constants";
+import { Link } from "~/routes";
 import Heart from "~/components/icons/Heart";
 import HeartSolid from "~/components/icons/HeartSolid";
 import Play from "~/components/icons/Play";
@@ -14,9 +16,7 @@ import useGet from "~/hooks/useGet";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
 import ExplicitContent from "~/components/icons/ExplicitContent";
 import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
-import { screen } from "~/global/constants";
 import "~/styles/album-[id].scss";
-import { Link } from "../routes";
 
 interface FetchResponse {
   single: Single;

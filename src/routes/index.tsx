@@ -9,14 +9,14 @@ import {
 } from "react-router-dom";
 import { screen } from "~/global/constants";
 import { animate } from "framer-motion";
-import Playlist from "~/pages/Playlist-[id]";
+import Playlist from "~/pages/[id]/Playlist";
 import Search from "~/pages/Search";
 import Shell from "~/components/Shell";
 import Home from "~/pages/Home";
-import Album from "~/pages/Album-[id]";
+import Album from "~/pages/[id]/Album";
 import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
 import collectionButtonHandler from "~/handlers/collectionButtonHandler";
-import Artist from "~/pages/Artists-[id]";
+import Artist from "~/pages/[id]/Artist";
 
 interface HistoryUrl {
   path: string;
