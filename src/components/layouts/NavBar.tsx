@@ -1,13 +1,15 @@
 import { type TargetAndTransition, type VariantLabels, motion } from "framer-motion";
+import { Link } from "~/routes";
 import { useRef, type ReactElement, useEffect } from "react";
-import BackBtn from "./BackBtn";
-import NextBtn from "./NextBtn";
+import BackBtn from "~/components/ui/BackBtn";
+import NextBtn from "~/components/ui/NextBtn";
 
 interface HomeNavBarProps {
   profile: string;
+  id: string;
 }
 
-export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
+export default function NavBar({ profile, id }: HomeNavBarProps): ReactElement {
   const navRef = useRef<HTMLDivElement>(null);
   const whileHoverValue: VariantLabels | TargetAndTransition = {
     scale: 1.05,
@@ -63,7 +65,9 @@ export default function NavBar({ profile }: HomeNavBarProps): ReactElement {
           whileHover={whileHoverValue}
           className="overflow-hidden rounded-full border-[5px] border-black border-solid cursor-pointer"
         >
-          <img src={profile} alt="Profile image" width={32} height={32} />
+          <Link to={`/user/${id}`}>
+            <img src={profile} alt="Profile image" width={32} height={32} />
+          </Link>
         </motion.picture>
       </div>
     </div>

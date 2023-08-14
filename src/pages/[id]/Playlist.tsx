@@ -1,6 +1,8 @@
 import { useContext, type ReactElement, useEffect, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { screen } from "~/global/constants";
+import { Link } from "~/routes";
 import CredentialContext from "~/context/CredentialContext";
 import LocalLoader from "~/components/popups/LocalLoader";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
@@ -18,7 +20,6 @@ import Play from "~/components/icons/Play";
 import noicon from "~/assets/no-icon.png";
 import ExplicitContent from "~/components/icons/ExplicitContent";
 import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
-import { screen } from "~/global/constants";
 import "~/styles/playlist-[id].scss";
 
 interface FetchResponse {
@@ -103,7 +104,7 @@ export default function Playlist(): ReactElement {
                 width={28}
               />
               <span className="ml-1 font-bold hover:underline underline-offset-2 cursor-pointer">
-                {playlist?.owner.display_name}
+                <Link to={`/user/${owner.id}`}>{playlist?.owner.display_name}</Link>
               </span>
               <span className="hidden lg:inline lg:mx-1">&#x2022;</span>
             </span>

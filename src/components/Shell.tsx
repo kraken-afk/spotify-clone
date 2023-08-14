@@ -1,6 +1,6 @@
 import { PropsWithChildren, useContext, type ReactElement } from "react";
 import { useQuery } from "@tanstack/react-query";
-import NavBar from "./ui/NavBar";
+import NavBar from "./layouts/NavBar";
 import CredentialContext from "~/context/CredentialContext";
 import LocalLoader from "./popups/LocalLoader";
 import GenericContext from "~/context/GenericContext";
@@ -33,11 +33,11 @@ export default function Shell({ children }: PropsWithChildren): ReactElement {
 
   if (isLoading) return <LocalLoader />;
 
-  const { images } = data?.profile as CurrentProfile;
+  const { images, id } = data?.profile as CurrentProfile;
 
   return (
     <GenericContext.Provider value={data}>
-      <NavBar profile={images[0]?.url ?? no_icon} />
+      <NavBar profile={images[0]?.url ?? no_icon} id={id} />
       {children}
     </GenericContext.Provider>
   );

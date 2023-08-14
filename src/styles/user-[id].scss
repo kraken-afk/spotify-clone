@@ -1,0 +1,15 @@
+.mobile-profile {
+  @media screen and (max-width: 470px) {
+    .type {
+      display: none;
+    }
+
+    picture {
+      width: 76px;
+    }
+
+    &:last-child {
+      font-size: .9rem;
+    }
+  }
+}

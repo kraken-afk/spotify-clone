@@ -16,6 +16,7 @@ import Home from "~/pages/Home";
 import Album from "~/pages/[id]/Album";
 import isDeviceWidthLT from "~/libs/isDeviceWidthLT";
 import collectionButtonHandler from "~/handlers/collectionButtonHandler";
+import User from "~/pages/[id]/User";
 import Artist from "~/pages/[id]/Artist";
 
 interface HistoryUrl {
@@ -100,6 +101,14 @@ const AppRoute = forwardRef<HTMLElement, unknown>((_props, ref): ReactElement =>
           element={
             <Shell>
               <Artist />
+            </Shell>
+          }
+        />
+        <Route
+          path="/user/:id"
+          element={
+            <Shell>
+              <User />
             </Shell>
           }
         />
