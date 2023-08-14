@@ -1,7 +1,6 @@
 import { type ReactElement } from "react";
-import { type IconsProps } from "./icons";
 
-export default function Heart(props: IconsProps): ReactElement {
+export default function Play(props: IconsProps): ReactElement {
   const size = props?.size ?? 24;
   return (
     <svg

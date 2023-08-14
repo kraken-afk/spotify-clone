@@ -1,5 +1,4 @@
 import { type ReactElement } from "react";
-import { type IconsProps } from "./icons";
 
 export default function Time(props: IconsProps): ReactElement {
   const size = props?.size ?? 24;

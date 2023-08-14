@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { SCOPE } from "~/global/constants";
 import base64urlencode from "~/libs/base64urlencode";
 import generateRandomString from "~/libs/generateRandomString";
 import sha256 from "~/libs/sha256";
@@ -28,8 +29,7 @@ export default function useAuthorization() {
         const state = generateRandomString(16);
         const encryptedVerifier = await sha256(verifier);
         const endpoint = new URL("https://accounts.spotify.com/authorize");
-        const scope =
-          "user-read-private user-read-email playlist-read-private playlist-read-collaborative user-library-read user-top-read";
+        const scope = SCOPE.join(" ")
 
         localStorage.setItem("X-Verifier", verifier);
 

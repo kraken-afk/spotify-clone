@@ -117,7 +117,6 @@ interface Track {
   available_markets: Markets;
   disc_number: number;
   duration_ms: number;
-  episode: false;
   explicit: false;
   external_ids: ExternalIds;
   external_urls: ExternalUrls;
@@ -127,7 +126,6 @@ interface Track {
   name: string;
   popularity: number;
   preview_url: string;
-  track: boolean;
   track_number: number;
   type: string;
   uri: string;
@@ -323,25 +321,7 @@ interface Single {
 }
 
 interface TopTrack {
-  tracks: Array<{
-    album: Album;
-    artists: Artist[];
-    disc_number: number;
-    duration_ms: number;
-    explicit: boolean;
-    external_ids: ExternalIds;
-    external_urls: ExternalUrls;
-    href: string;
-    id: string;
-    is_local: boolean;
-    is_playable: true;
-    name: string;
-    popularity: number;
-    preview_url: string;
-    track_number: number;
-    type: string;
-    uri: string;
-  }>;
+  tracks: Track[];
 }
 
 interface ArtistAlbums {

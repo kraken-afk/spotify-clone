@@ -1,9 +1,13 @@
+.topartist-container {
+  @apply mt-4;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
 .mobile-profile {
   @media screen and (max-width: 470px) {
-    .type {
-      display: none;
-    }
-
     picture {
       width: 76px;
     }

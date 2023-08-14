@@ -209,7 +209,9 @@ export default function Playlist(): ReactElement {
                 </td>
                 {!isDeviceWidthLT(screen.LG) && (
                   <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
-                    {item.track.album.name}
+                    <Link to={`/album/${item.track.album.id}`}>
+                      {item.track.album.name}
+                    </Link>
                   </td>
                 )}
                 {!isDeviceWidthLT(screen.LG) && (
