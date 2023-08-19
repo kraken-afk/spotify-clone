@@ -2,8 +2,8 @@ import { type ReactElement } from "react";
 
 export default function FooterSection(): ReactElement {
   return (
-    <footer className="my-16 min-h-[7rem] border-t-neutral-700 border-t-[1px] border-solid flex justify-center items-center flex-col">
-      <p>
+    <footer className="text-sm sm:text-base my-4 sm:my-16 sm:min-h-[7rem] border-t-neutral-700 border-t-[1px] border-solid flex justify-center items-center flex-col text-center">
+      <p className="mb-4 mt-3 sm:mb-0 sm:mt-0">
         Built by{" "}
         <a
           className="underline text-blue-600 font-bold"

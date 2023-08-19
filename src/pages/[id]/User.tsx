@@ -61,8 +61,6 @@ export default function User(): ReactElement {
           )
         : undefined;
 
-      console.log(topArtist);
-
       return { user, playlists, topTracks, topArtist };
     },
   });
@@ -112,17 +110,21 @@ export default function User(): ReactElement {
             <TopTrackSection tracks={topTracks.items} savedTracks={savedTracks} />
           </>
         )}
-        <div className="mb-4 mt-8">
-          <h2 className="sub-title">Most listened artist</h2>
-          <p className="text-essential-sub font-semibold">10th most listened artist from the last 30 days</p>
-          <div className="topartist-container">
-            {topArtist?.items.map((artist) => (
-              <Link to={`/artist/${artist.id}`} key={`${artist.id}-user`}>
-                <CreatorCard coverImage={artist.images[1].url} name={artist.name} />
-              </Link>
-            ))}
-          </div>
-        </div>
+        {
+          topArtist && (
+            <div className="mb-4 mt-8">
+              <h2 className="sub-title">Most listened artist</h2>
+              <p className="text-essential-sub font-semibold">10th most listened artist from the last 30 days</p>
+              <div className="topartist-container">
+                {topArtist?.items.map((artist) => (
+                  <Link to={`/artist/${artist.id}`} key={`${artist.id}-user`}>
+                    <CreatorCard coverImage={artist.images[1].url} name={artist.name} />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )
+        }
       </div>
       <FooterSection />
     </>

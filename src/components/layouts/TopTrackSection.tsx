@@ -48,7 +48,7 @@ export default function TopTrackSection({ tracks, savedTracks }: ToptrackListPro
                   />
                 </div>
                 <div className="flex flex-col px-2">
-                  <span className="truncate max-w-[250px] hover:underline underline-offset-2">
+                  <span className="truncate max-w-[120px] sm:max-w-[250px] hover:underline underline-offset-2">
                     {item.name}
                   </span>
                   <span className="text-essential-sub">

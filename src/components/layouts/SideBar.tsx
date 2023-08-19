@@ -8,6 +8,8 @@ import SideBarBadge from "./SideBarBadge";
 import collectionButtonHandler from "~/handlers/collectionButtonHandler";
 import { animate } from "framer-motion";
 import "~/styles/sidebar.scss";
+import isDeviceWidthLT from "../../libs/isDeviceWidthLT";
+import { screen } from "../../global/constants";
 
 interface SideBarProps {
   animate: typeof animate;
@@ -26,12 +28,12 @@ const SideBar = forwardRef<HTMLElement, SideBarProps>((props, ref): ReactElement
       <picture className="block mb-2 py-[.7rem] px-[.3rem overflow-hidden">
         <img src={logoFull} alt="Spotify logo" draggable="false" className="min-w-max" />
       </picture>
-      <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-[.3rem] max-w-[300px]  overflow-hidden">
-        <div>
+      <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-[.3rem] max-w-[300px] overflow-hidden">
+        <div className="nav-first-wrapper">
           <Link to="/">
             <div
               aria-label="Home"
-              className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all"
+              className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all nav-btn"
             >
               <svg
                 role="img"
@@ -51,7 +53,7 @@ const SideBar = forwardRef<HTMLElement, SideBarProps>((props, ref): ReactElement
           <Link to="/search">
             <div
               aria-label="Search"
-              className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all"
+              className="fill-essential-sub text-essential-sub hover:fill-white hover:text-white flex font-bold my-5 cursor-pointer transition-all nav-btn"
             >
               <svg
                 role="img"
@@ -69,49 +71,65 @@ const SideBar = forwardRef<HTMLElement, SideBarProps>((props, ref): ReactElement
           </Link>
         </div>
       </div>
-      <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-4 max-w-[300px] overflow-hidden mt-2 collection transition-all">
-        <button
-          onClick={collectionButtonHandler(props.animate)}
-          type="button"
-          aria-hidden="true"
-          className="flex items-center gap-4 font-bold text-essential-sub cursor-pointer hover:text-white hover:fill-white fill-essential-sub w-full mb-4 sub-title"
-        >
-          <svg
-            className="min-w-max"
-            role="img"
-            height="24"
-            width="24"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-          >
-            <path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
-          </svg>
-          <span className="whitespace-nowrap text-[1rem]">Your collection</span>
-        </button>
-        <div className="overflow-y-auto scrollable">
-          {isLoading ? (
-            <>
-              <SkeletoSideBarBadge />
-              <SkeletoSideBarBadge />
-              <SkeletoSideBarBadge />
-              <SkeletoSideBarBadge />
-            </>
-          ) : (
-            <>
-              {data?.items.map((item) => (
-                <Link key={item.id + "-sidebar"} to={`/${item.type}/${item.id}`}>
-                  <SideBarBadge
-                    img={item.images.at(-1)?.url as string}
-                    owner={item.owner.display_name}
-                    title={item.name}
-                    type="playlist"
-                  />
-                </Link>
-              ))}
-            </>
-          )}
-        </div>
-      </div>
+      {
+        isDeviceWidthLT(screen.SM)
+          ? (<Link to="/library" className="h-min">
+              <div className="w-full flex justify-center">
+              <svg
+                className="min-w-max text-essential-sub cursor-pointer hover:text-white hover:fill-white fill-essential-sub nav-btn"
+                role="img"
+                height="24"
+                width="24"
+                aria-hidden="true"
+                viewBox="0 0 24 24">
+                <path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
+              </svg>
+              </div>
+          </Link>)
+          : <div className=" bg-base rounded-[8.5px] p-[.7rem] pl-[.8rem] py-4 max-w-[300px] overflow-hidden mt-2 collection transition-all m-nav-0">
+            <button
+              onClick={collectionButtonHandler(props.animate)}
+              type="button"
+              aria-hidden="true"
+              className="flex items-center gap-4 font-bold text-essential-sub cursor-pointer hover:text-white hover:fill-white fill-essential-sub w-full mb-4 sub-title nav-btn m-nav-0"
+            >
+              <svg
+                className="min-w-max"
+                role="img"
+                height="24"
+                width="24"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+              >
+                <path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
+              </svg>
+              <span className="whitespace-nowrap text-[1rem]">Your collection</span>
+            </button>
+            <div className="overflow-y-auto scrollable">
+              {isLoading ? (
+                <>
+                  <SkeletoSideBarBadge />
+                  <SkeletoSideBarBadge />
+                  <SkeletoSideBarBadge />
+                  <SkeletoSideBarBadge />
+                </>
+              ) : (
+                <>
+                  {data?.items.map((item) => (
+                    <Link key={item.id + "-sidebar"} to={`/${item.type}/${item.id}`}>
+                      <SideBarBadge
+                        img={item.images.at(-1)?.url as string}
+                        owner={item.owner.display_name}
+                        title={item.name}
+                        type="playlist"
+                      />
+                    </Link>
+                  ))}
+                </>
+              )}
+            </div>
+          </div>
+      }
     </nav>
   );
 });

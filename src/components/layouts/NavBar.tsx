@@ -33,6 +33,7 @@ export default function NavBar({ profile, id }: HomeNavBarProps): ReactElement {
 
   return (
     <div
+      id="navbar"
       className="bg-opacity-40 transition-all duration-300 flex justify-between items-center sticky top-[-1px] left-0 z-10 backdrop-blur bg-transparent p-4"
       ref={navRef}
     >

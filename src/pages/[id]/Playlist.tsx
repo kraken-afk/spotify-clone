@@ -53,21 +53,26 @@ export default function Playlist(): ReactElement {
     },
   });
   const theadScrollHandler = () => {
-    const element = theadRef.current;
-    const top = element?.getBoundingClientRect().top as number;
+    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect().bottom as number;
 
-    if (!element?.classList.contains("bg-main-black") && top === 83)
-      element?.classList.replace("bg-transparent", "bg-main-black");
+    return () => {
+      const element = theadRef.current;
+      const top = element?.getBoundingClientRect().top as number;
 
-    if (element?.classList.contains("bg-main-black") && top > 83)
-      element?.classList.replace("bg-main-black", "bg-transparent");
+      if (!element?.classList.contains("bg-main-black") && top < navbarBottom)
+        element?.classList.replace("bg-transparent", "bg-main-black");
+
+      if (element?.classList.contains("bg-main-black") && (top + 1) > navbarBottom)
+        element?.classList.replace("bg-main-black", "bg-transparent");
+    }
   };
 
   useEffect(() => {
     const element = document.querySelector(".main") as HTMLElement;
-    element.addEventListener("scroll", theadScrollHandler);
+    const handler = theadScrollHandler();
+    element.addEventListener("scroll", handler);
 
-    return () => element.removeEventListener("scroll", theadScrollHandler);
+    return () => element.removeEventListener("scroll", handler);
   }, []);
 
   if (isLoading) return <LocalLoader />;
@@ -77,7 +82,7 @@ export default function Playlist(): ReactElement {
   return (
     <>
       <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">
-        <picture className="block mb-4 sm:mx-auto lg:m-0 lg:mr-8 lg:items-end">
+        <picture className="block mb-4 mx-auto lg:m-0 lg:mr-8 lg:items-end">
           <img
             className="block shadow-2xl min-w-[200px] w-[200px] min-h-[200px] h-[200px] object-center"
             src={playlist?.images[0].url}
@@ -188,7 +193,7 @@ export default function Playlist(): ReactElement {
                       />
                     </div>
                     <div className="flex flex-col px-2">
-                      <span className="truncate max-w-[250px] hover:underline underline-offset-2">
+                      <span className="truncate max-w-[180px] sm:max-w-[250px] hover:underline underline-offset-2">
                         {item.track.name}
                       </span>
                       <span className="text-essential-sub">

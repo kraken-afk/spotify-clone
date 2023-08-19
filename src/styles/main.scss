@@ -8,8 +8,10 @@
   @apply font-sans bg-[#000] text-white;
 }
 
-a[href] {
-  width: min-content !important;
+@media screen and (min-width: 461px) {
+  a[href] {
+    width: min-content !important;
+  }
 }
 
 .app {
@@ -25,16 +27,14 @@ a[href] {
   display: grid;
   grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
   height: 100vh;
-  overflow: hidden;
+  // overflow: hidden;
 
   .main {
     background: rgb(18, 18, 18);
     background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
-    background: -webkit-linear-gradient(
-      0deg,
-      rgba(18, 18, 18, 1) 70%,
-      rgba(33, 33, 33, 1) 100%
-    );
+    background: -webkit-linear-gradient(0deg,
+        rgba(18, 18, 18, 1) 70%,
+        rgba(33, 33, 33, 1) 100%);
     background: linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
@@ -43,6 +43,11 @@ a[href] {
     @media screen and (max-width: 768px) {
       width: calc(100vw - 50px);
       padding-right: 1rem;
+    }
+
+    @media screen and (max-width: 460px) {
+      width: 100%;
+      padding-right: 0;
     }
   }
 
@@ -63,6 +68,80 @@ a[href] {
       pointer-events: none;
     }
   }
+
+  @media screen and (max-width: 460px) {
+    & {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .navigation {
+      height: $nav-width;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      padding: 0;
+      padding-bottom: .5rem;
+      padding-top: .8rem;
+
+      picture {
+        display: none;
+      }
+
+      &>.bg-base {
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        height: min-content;
+      }
+
+      .nav-first-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &>* {
+          width: 100%;
+        }
+      }
+
+      .scrollable {
+        display: none;
+      }
+
+      .nav-btn {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+
+        span {
+          display: none;
+        }
+      }
+
+      .m-nav-0 {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+main::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+  @apply bg-neutral-800 rounded-lg;
+}
+
+main::-webkit-scrollbar-track {
+  background-color: transparent;
+  padding: 0;
 }
 
 @import url("./split-pane.scss");

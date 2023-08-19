@@ -49,21 +49,27 @@ export default function Album(): ReactElement {
     },
   });
   const theadScrollHandler = () => {
-    const element = theadRef.current;
-    const top = element?.getBoundingClientRect().top as number;
+    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect().bottom as number;
 
-    if (!element?.classList.contains("bg-main-black") && top === 83)
-      element?.classList.replace("bg-transparent", "bg-main-black");
+    return () => {
+      const element = theadRef.current;
+      const top = element?.getBoundingClientRect().top as number;
 
-    if (element?.classList.contains("bg-main-black") && top > 83)
-      element?.classList.replace("bg-main-black", "bg-transparent");
+      if (!element?.classList.contains("bg-main-black") && top < navbarBottom)
+        element?.classList.replace("bg-transparent", "bg-main-black");
+
+      if (element?.classList.contains("bg-main-black") && (top + 1) > navbarBottom)
+        element?.classList.replace("bg-main-black", "bg-transparent");
+    }
   };
 
   useEffect(() => {
     const element = document.querySelector(".main") as HTMLElement;
-    element.addEventListener("scroll", theadScrollHandler);
+    const handler = theadScrollHandler();
 
-    return () => element.removeEventListener("scroll", theadScrollHandler);
+    element.addEventListener("scroll", handler);
+
+    return () => element.removeEventListener("scroll", handler);
   }, []);
 
   if (isLoading) return <LocalLoader />;
@@ -74,7 +80,7 @@ export default function Album(): ReactElement {
   return (
     <>
       <div className="p-4 lg:pb-10 flex border-b-neutral-700 border-b-[1px] border-solid lg:flex-row flex-col">
-        <picture className="block mb-4 sm:mx-auto lg:m-0 lg:mr-8 lg:items-end">
+        <picture className="block mb-4 mx-auto lg:m-0 lg:mr-8 lg:items-end">
           <img
             className="block shadow-2xl min-w-[200px] w-[200px]"
             src={single?.images[0].url}
@@ -161,7 +167,7 @@ export default function Album(): ReactElement {
               <span className="text-sm py-4">
                 <div className="flex items-center gap-4">
                   <div className="flex flex-col px-2">
-                    <span className="truncate max-w-[250px] hover:underline underline-offset-2">
+                    <span className="truncate max-w-[180px] sm:max-w-[250px] hover:underline underline-offset-2">
                       {item.name}
                     </span>
                     <span className="text-essential-sub">
