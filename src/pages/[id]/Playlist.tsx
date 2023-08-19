@@ -53,7 +53,8 @@ export default function Playlist(): ReactElement {
     },
   });
   const theadScrollHandler = () => {
-    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect().bottom as number;
+    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect()
+      .bottom as number;
 
     return () => {
       const element = theadRef.current;
@@ -62,9 +63,9 @@ export default function Playlist(): ReactElement {
       if (!element?.classList.contains("bg-main-black") && top < navbarBottom)
         element?.classList.replace("bg-transparent", "bg-main-black");
 
-      if (element?.classList.contains("bg-main-black") && (top + 1) > navbarBottom)
+      if (element?.classList.contains("bg-main-black") && top + 1 > navbarBottom)
         element?.classList.replace("bg-main-black", "bg-transparent");
-    }
+    };
   };
 
   useEffect(() => {
@@ -214,9 +215,7 @@ export default function Playlist(): ReactElement {
                 </td>
                 {!isDeviceWidthLT(screen.LG) && (
                   <td className="text-sm py-4 px-2 truncate max-w-[230px] hover:underline underline-offset-2">
-                    <Link to={`/album/${item.track.album.id}`}>
-                      {item.track.album.name}
-                    </Link>
+                    <Link to={`/album/${item.track.album.id}`}>{item.track.album.name}</Link>
                   </td>
                 )}
                 {!isDeviceWidthLT(screen.LG) && (

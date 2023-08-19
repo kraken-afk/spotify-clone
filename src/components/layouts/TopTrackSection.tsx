@@ -7,17 +7,18 @@ import Heart from "~/components/icons/Heart";
 import Play from "~/components/icons/Play";
 import msToTime, { TimeConverterEnum } from "~/libs/msToTime";
 
-
-
 interface ToptrackListProps {
-  tracks: Track[]
+  tracks: Track[];
   savedTracks: Array<{
     added_at: string;
     track: Track;
   }>;
 }
 
-export default function TopTrackSection({ tracks, savedTracks }: ToptrackListProps): ReactElement {
+export default function TopTrackSection({
+  tracks,
+  savedTracks,
+}: ToptrackListProps): ReactElement {
   const [isExpand, setIsExpand] = useState(false);
   const location = useLocation();
 

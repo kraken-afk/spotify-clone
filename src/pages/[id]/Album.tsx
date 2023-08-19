@@ -49,7 +49,8 @@ export default function Album(): ReactElement {
     },
   });
   const theadScrollHandler = () => {
-    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect().bottom as number;
+    const navbarBottom = document.getElementById("navbar")?.getBoundingClientRect()
+      .bottom as number;
 
     return () => {
       const element = theadRef.current;
@@ -58,9 +59,9 @@ export default function Album(): ReactElement {
       if (!element?.classList.contains("bg-main-black") && top < navbarBottom)
         element?.classList.replace("bg-transparent", "bg-main-black");
 
-      if (element?.classList.contains("bg-main-black") && (top + 1) > navbarBottom)
+      if (element?.classList.contains("bg-main-black") && top + 1 > navbarBottom)
         element?.classList.replace("bg-main-black", "bg-transparent");
-    }
+    };
   };
 
   useEffect(() => {

@@ -29,7 +29,7 @@ export default function useAuthorization() {
         const state = generateRandomString(16);
         const encryptedVerifier = await sha256(verifier);
         const endpoint = new URL("https://accounts.spotify.com/authorize");
-        const scope = SCOPE.join(" ")
+        const scope = SCOPE.join(" ");
 
         localStorage.setItem("X-Verifier", verifier);
 

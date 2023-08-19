@@ -32,9 +32,11 @@
   .main {
     background: rgb(18, 18, 18);
     background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
-    background: -webkit-linear-gradient(0deg,
-        rgba(18, 18, 18, 1) 70%,
-        rgba(33, 33, 33, 1) 100%);
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(18, 18, 18, 1) 70%,
+      rgba(33, 33, 33, 1) 100%
+    );
     background: linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
@@ -83,14 +85,14 @@
       display: grid;
       grid-template-columns: 2fr 1fr;
       padding: 0;
-      padding-bottom: .5rem;
-      padding-top: .8rem;
+      padding-bottom: 0.5rem;
+      padding-top: 0.8rem;
 
       picture {
         display: none;
       }
 
-      &>.bg-base {
+      & > .bg-base {
         background-color: transparent;
         border-radius: 0;
         padding: 0;
@@ -102,7 +104,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
 
-        &>* {
+        & > * {
           width: 100%;
         }
       }

@@ -4,7 +4,6 @@ export const screen = {
   SM: 460,
 };
 
-
 /**
  * @see https://developer.spotify.com/documentation/web-api/concepts/scopes
  */

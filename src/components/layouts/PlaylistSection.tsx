@@ -14,7 +14,7 @@ interface PlaylistSectionProps {
 export default function PlaylistSection({
   playlist,
   title,
-  className
+  className,
 }: PlaylistSectionProps): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
 
