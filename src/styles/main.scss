@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 461px) {
-  a[href] {
+  .a[href]:not(a.flex) {
     width: min-content !important;
   }
 }
@@ -19,14 +19,15 @@
   margin-inline: auto;
   $nav-width: 21%;
   $gutter-width: 0.6rem;
+  overflow: hidden;
 
   @apply transition-all;
 
   padding: 10px;
   padding-bottom: 0;
+  padding-right: 0;
   display: grid;
   grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
-  height: 100vh;
   // overflow: hidden;
 
   .main {
@@ -40,7 +41,7 @@
     background: linear-gradient(0deg, rgba(18, 18, 18, 1) 70%, rgba(33, 33, 33, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
-    height: 100%;
+    height: calc(100vh - 1rem);
 
     @media screen and (max-width: 768px) {
       width: calc(100vw - 50px);

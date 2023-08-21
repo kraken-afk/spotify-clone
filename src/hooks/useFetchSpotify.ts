@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 
 export default function useFetchSpotify<T = unknown>(
-  url: string,
+  url: string | null,
   token: Credential,
   metadata?: RequestInit
 ) {
   return useQuery({
-    queryKey: [new URL(url).pathname],
+    queryKey: [url],
     cacheTime: 3600,
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
     queryFn: async () => {
+      if (url === null) return undefined;
+
       const meta: Record<string, any> = { ...metadata };
 
       if ("headers" in meta)

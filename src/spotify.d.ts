@@ -349,3 +349,13 @@ interface ArtistAlbums {
   previous?: string;
   total: number;
 }
+
+interface SearchResponse {
+  albums?: ContentResponse<Album>;
+  artists?: ContentResponse<ArtistDetail>;
+  playlists?: ContentResponse<PlaylistItem>;
+  error?: {
+    status: number;
+    message: string;
+  };
+}

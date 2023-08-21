@@ -1,6 +1,9 @@
 .navigation {
   display: grid;
   grid-template-rows: 70px 120px 1fr;
+  max-height: calc(100vh - 1rem);
+  overflow: hidden;
+  border-radius: 7px;
 }
 
 .collection-active {
