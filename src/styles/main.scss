@@ -28,7 +28,6 @@
   padding-right: 0;
   display: grid;
   grid-template-columns: $nav-width $gutter-width calc((100% - $nav-width) - $gutter-width);
-  // overflow: hidden;
 
   .main {
     background: rgb(18, 18, 18);
@@ -42,11 +41,8 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#212121", GradientType=1);
     overflow-y: auto;
     height: calc(100vh - 1rem);
-
-    @media screen and (max-width: 768px) {
-      width: calc(100vw - 50px);
-      padding-right: 1rem;
-    }
+    width: calc(100vw - 50px);
+    padding-right: 1rem;
 
     @media screen and (max-width: 460px) {
       width: 100%;
@@ -79,56 +75,6 @@
       width: 100%;
       padding: 0;
       border-radius: 0;
-    }
-
-    .navigation {
-      height: $nav-width;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      padding: 0;
-      padding-bottom: 0.5rem;
-      padding-top: 0.8rem;
-
-      picture {
-        display: none;
-      }
-
-      & > .bg-base {
-        background-color: transparent;
-        border-radius: 0;
-        padding: 0;
-        margin: 0;
-        height: min-content;
-      }
-
-      .nav-first-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        & > * {
-          width: 100%;
-        }
-      }
-
-      .scrollable {
-        display: none;
-      }
-
-      .nav-btn {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-
-        span {
-          display: none;
-        }
-      }
-
-      .m-nav-0 {
-        margin: 0;
-        padding: 0;
-      }
     }
   }
 }

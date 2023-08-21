@@ -29,7 +29,7 @@ export default function TopTrackSection({
           key={item.id}
           className="cursor-pointer hover:bg-main-black song-row flex justify-between"
         >
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-1 sm:gap-3 items-center">
             <div className="text-sm py-4 px-4 text-essential-sub text-right relative">
               <span className="number absolute right-1/3 top-1/2 translate-y-[-50%]">
                 {index + 1}
@@ -39,7 +39,7 @@ export default function TopTrackSection({
               </span>
             </div>
             <div className="text-sm py-4">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1 sm:gap-4">
                 <div className="w-[48px] h-[48px] bg-neutral-700 overflow-hidden">
                   <img
                     src={item.album.images.at(-1)?.url}
@@ -48,10 +48,8 @@ export default function TopTrackSection({
                     width={48}
                   />
                 </div>
-                <div className="flex flex-col px-2">
-                  <span className="truncate max-w-[120px] sm:max-w-[250px] hover:underline underline-offset-2">
-                    {item.name}
-                  </span>
+                <div className="flex flex-col px-2 max-w-[170px] sm:max-w-[250px] truncate">
+                  <span className="hover:underline underline-offset-2">{item.name}</span>
                   <span className="text-essential-sub">
                     {item.explicit ? <ExplicitContent /> : ""}
                     {!/^\/artist\/.+/.test(location.pathname) &&
@@ -71,8 +69,8 @@ export default function TopTrackSection({
             </div>
           </div>
 
-          <div className="flex gap-6 items-center">
-            <div className="p-4 relative flex items-center justify-center">
+          <div className="flex gap-1 sm:gap-6 items-center">
+            <div className="p-4 relative hidden sm:flex items-center justify-center">
               {savedTracks.find(({ track }) => {
                 return track.id === item.id;
               }) ? (
