@@ -359,3 +359,10 @@ interface SearchResponse {
     message: string;
   };
 }
+
+interface Categories {
+  href: string,
+  icons: CoverImg[],
+  id: string,
+  name: string,
+}

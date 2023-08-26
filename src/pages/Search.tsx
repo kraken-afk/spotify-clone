@@ -1,14 +1,26 @@
-import { MouseEventHandler, ReactElement, useState } from "react";
+import { MouseEventHandler, ReactElement, useContext, useState } from "react";
 import SearchBar from "~/components/ui/SearchBar";
 import "~/styles/search.scss";
 import SearchQ from "./(q)/SearchQ";
+import useFetchSpotify from "../hooks/useFetchSpotify";
+import CredentialContext from "../context/CredentialContext";
+import LocalLoader from "../components/popups/LocalLoader";
+import FooterSection from "../components/layouts/FooterSection";
 
 type Filter = "artist" | "album" | "playlist";
 
 export default function Search(): ReactElement {
   const [type, setType] = useState<Filter>("artist");
   const params = new URLSearchParams(location.search);
+  const token = useContext(CredentialContext) as Credential;
+  const { data, isLoading } = useFetchSpotify<{ categories: ContentResponse<Categories> }>
+    ("https://api.spotify.com/v1/browse/categories?limit=50", token);
+
+    if (isLoading) return <LocalLoader />
+
   const q = params.get("q");
+  const { categories } = data as { categories: ContentResponse<Categories> }
+
 
   if (q) return <SearchQ />;
 
@@ -40,16 +52,21 @@ export default function Search(): ReactElement {
         </div>
         <SearchBar searchType={type} />
       </div>
-      <div>
-        <h2>Browse</h2>
+      <div className="p-4">
+        <h2 className="sub-title mb-6">Browse by categories</h2>
         <div className="category-container">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          {
+            categories.items.map(
+              e =>
+                <div className="w-[150px] h-[130px] rounded-md bg-black-expose p-4 relative hover:bg-neutral-800 transition-colors cursor-pointer z-0" key={e.id}>
+                  <span className="z-0 font-bold">{e.name}</span>
+                  <img src={e.icons[0].url} alt={e.name} className="z-[-1] w-24 rounded-md absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]" />
+                </div>
+            )
+          }
         </div>
       </div>
+      <FooterSection />
     </>
   );
 }

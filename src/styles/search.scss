@@ -2,7 +2,7 @@
   @apply bg-white text-black border-neutral-950;
 
   &:hover {
-    background-color: #eeeeee !important;
+    background-color: #e78888 !important;
   }
 }
 
@@ -24,4 +24,10 @@
 .dropdown::-webkit-scrollbar-track {
   background-color: transparent;
   padding: 0;
+}
+
+.category-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 1rem;
 }

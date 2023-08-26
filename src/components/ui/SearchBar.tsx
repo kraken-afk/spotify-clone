@@ -34,7 +34,7 @@ export default function SearchBar(props: SearchBarProps): ReactElement {
         }}
       />
       {query && (
-        <div className="absolute top-full left-0 w-full flex flex-col rounded-b-lg border-[1px] border-neutral-800 h-[300px] overflow-y-auto bg-black-expose dropdown">
+        <div className="absolute top-full left-0 w-full flex flex-col rounded-b-lg border-[1px] border-neutral-800 h-[300px] overflow-y-auto bg-black-expose dropdown z-10 shadow-md shadow-main-black">
           {isLoading && <LocalLoader />}
           {data?.artists &&
             data?.artists.items.map((v) => (
