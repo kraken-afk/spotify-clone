@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import Loader from "./components/popups/Loader";
 
 const queryClient = new QueryClient();
 const root = createRoot(document.getElementById("root") as HTMLElement);
