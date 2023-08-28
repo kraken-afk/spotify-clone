@@ -8,7 +8,7 @@ export function serve(callable: ServerRoute) {
     const key = req.headers.get("Authorization") as string;
 
     try {
-      if (MODE !== "development") BlockOrigin.validate(origin);
+      // if (MODE !== "development") BlockOrigin.validate(origin);
 
       validateKey(key?.split(" ")[1]);
 
