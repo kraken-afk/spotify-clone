@@ -9,15 +9,11 @@ const queryClient = new QueryClient();
 const root = createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-  import.meta.env.VITE_MODE !== "development" ? (
-    <Loader title="under construction" />
-  ) : (
-    <StrictMode>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </BrowserRouter>
-    </StrictMode>
-  )
+  <StrictMode>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </BrowserRouter>
+  </StrictMode>
 );
