@@ -1,5 +1,5 @@
-import { MODE } from "./constants.ts";
-import BlockOrigin from "./utils/BlockOrigin.ts";
+// import { MODE } from "./constants.ts";
+// import BlockOrigin from "./utils/BlockOrigin.ts";
 import { validateKey } from "./validator.ts";
 
 export function serve(callable: ServerRoute) {
