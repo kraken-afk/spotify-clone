@@ -27,7 +27,7 @@ export default function SimiliarArtistsSection({
 
   return (
     <>
-      {!!(data?.artists.length as number) && (
+      {(
         <Section ref={containerRef} className="m-4 mt-6">
           <h2 className="text-[1.5rem] font-bold">Similiar Artists</h2>
           <ResponsiveSwiper containerRef={containerRef} isLoading={isLoading}>
