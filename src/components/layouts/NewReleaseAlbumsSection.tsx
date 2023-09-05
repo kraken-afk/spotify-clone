@@ -15,8 +15,6 @@ export default function NewReleaseAlbumsSection(): ReactElement {
     { method: "GET" }
   );
 
-  if (isLoading) return <h1>Loading..</h1>;
-
   return (
     <Section ref={containerRef}>
       <h2 className="sub-title">New Release</h2>
