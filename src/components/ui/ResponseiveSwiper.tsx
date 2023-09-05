@@ -30,6 +30,8 @@ export default function ResponsiveSwiper({
     setSlidesCount(count / cardX);
   }, [isLoading, slidesCount]);
 
+  console.log(slidesCount)
+
   if (isLoading || slidesCount === 0)
     return (
       <div className="flex gap-4">
