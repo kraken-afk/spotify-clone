@@ -23,11 +23,10 @@ export default function ArtistAlbumsSection({
   );
 
   useEffect(() => {}, [isLoading])
-  console.log(isLoading)
 
   return (
     <>
-      {!!(data?.items.length as number) && (
+      {(
         <Section ref={containerRef} className="m-4 mt-6">
           <h2 className="text-[1.5rem] font-bold">{artist} appears on</h2>
           <ResponsiveSwiper containerRef={containerRef} isLoading={isLoading}>
