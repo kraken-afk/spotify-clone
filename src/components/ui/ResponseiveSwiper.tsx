@@ -30,7 +30,9 @@ export default function ResponsiveSwiper({
     while (count + cardX <= containerX) count += cardX;
 
     setSlidesCount(count / cardX);
-  }, [isLoading]);
+  }, [isLoading, slidesCount]);
+
+
 
   if (isLoading || slidesCount === 0)
     return (
