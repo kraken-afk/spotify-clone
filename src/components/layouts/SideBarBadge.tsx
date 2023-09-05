@@ -11,7 +11,7 @@ export default function SideBarBadge(props: SideBarBadgeProps): ReactElement {
   return (
     <div className="h-[64px] w-full items-center badge-container-sidebar cursor-pointer">
       <picture className="block bg-neutral-700  w-[50px] h-[50px] rounded-md overflow-hidden">
-        <img src={props.img} alt="" width={50} loading="lazy" />
+        <img src={props.img} alt={props.title} loading="lazy" className="w-full h-full object-cover" />
       </picture>
       <div>
         <span className="font-semibold truncate hover:underline">{props.title}</span>
