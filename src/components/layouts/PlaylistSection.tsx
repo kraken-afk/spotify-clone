@@ -1,4 +1,4 @@
-import { useRef, type ReactElement } from "react";
+import { useRef, type ReactElement, useState } from "react";
 import { Link } from "~/routes";
 import ResponsiveSwiper from "~/components/ui/ResponseiveSwiper";
 import Card from "~/components/ui/Card";
@@ -17,11 +17,14 @@ export default function PlaylistSection({
   className,
 }: PlaylistSectionProps): ReactElement {
   const containerRef = useRef<HTMLElement>(null);
+  const [loading, setLoading] = useState(true)
+
+  setTimeout(() => setLoading(false), 300)
 
   return (
     <Section ref={containerRef} className={className}>
       <h2 className="sub-title">{title}</h2>
-      <ResponsiveSwiper isLoading={false} containerRef={containerRef}>
+      <ResponsiveSwiper isLoading={loading} containerRef={containerRef}>
         {playlist.map((item) => (
           <Link key={item.id} to={`/playlist/${item.id}`}>
             <Card
