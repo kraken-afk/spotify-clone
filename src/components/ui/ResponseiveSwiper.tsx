@@ -21,8 +21,6 @@ export default function ResponsiveSwiper({
   const [slidesCount, setSlidesCount] = useState<number>(0);
 
   useLayoutEffect(() => {
-    if (slidesCount || isLoading) return;
-
     const containerX = containerRef.current?.clientWidth as number;
     const cardX = isDeviceWidthLT(screen.MD) ? 120 : 192;
     let count = 0;
@@ -31,8 +29,6 @@ export default function ResponsiveSwiper({
 
     setSlidesCount(count / cardX);
   }, [isLoading, slidesCount]);
-
-
 
   if (isLoading || slidesCount === 0)
     return (
