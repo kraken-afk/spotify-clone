@@ -1,4 +1,4 @@
-import { useContext, type ReactElement, useRef } from "react";
+import { useContext, type ReactElement, useRef, useEffect } from "react";
 import { Link } from "~/routes";
 import Section from "~/components/ui/Section";
 import CredentialContext from "~/context/CredentialContext";
@@ -21,6 +21,9 @@ export default function ArtistAlbumsSection({
     token,
     { method: "GET" }
   );
+
+  useEffect(() => {}, [isLoading])
+  console.log(isLoading)
 
   return (
     <>
