@@ -8,9 +8,6 @@ export default function useFetchSpotify<T = unknown>(
   return useQuery({
     queryKey: [url],
     cacheTime: 3600,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
     queryFn: async () => {
       if (url === null) return undefined;
 
